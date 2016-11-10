@@ -1,0 +1,45 @@
+<!doctype html>
+<html><head>
+    <title>Test</title>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <style type='text/css'>
+            html { font-family:Helvetica; color:#222; }
+            h1 { color:steelblue; font-size:24px; margin-top:24px; }
+            button { margin:0 3px 10px; font-size:12px; }
+            .logLine { border-bottom:1px solid #ccc; padding:4px 2px; font-family:courier; font-size:11px; }
+            </style>
+        
+        <script>
+            alert(1);
+            window.onerror = function(err) {
+                console.log('window.onerror: ' + err)
+            }
+        
+            document.addEventListener("DOMContentLoaded",function() {
+                                      goods.ready(function(bridge) {
+<!--                                            alert("goods.ready in DOMContentLoaded");-->
+                                    });
+                                      
+                                      alert(goods.getAppInfo());
+                                  });
+
+            goods.ready(function(bridge) {
+<!--                alert("goods.ready");-->
+            });
+            
+            console.log(goods.getAppInfo());
+
+            goods.getAppInfo2(null, function(a){
+                console.log(a);
+<!--                alert(a);-->
+            });
+                    
+            </script>
+
+</head><body>
+    <h1>WebViewJavascriptBridge Demo</h1>
+    <div id='buttons'></div> <div id='log'></div>
+    INDEX 22222
+    <a href="index.html">index.html</a>
+
+</body></html>
