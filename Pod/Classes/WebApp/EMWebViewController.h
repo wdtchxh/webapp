@@ -19,6 +19,10 @@
 #import "UIViewController+EMShare.h"
 #import "UIViewController+SearchStock.h"
 
+#import "XWebView.h"
+#import "WKWebView+XWebView.h"
+#import "UIWebView+XWebView.h"
+
 @class MSMenuItemData;
 @class EMWebBackView;
 @class EMShareEntity;
@@ -26,7 +30,7 @@
 @protocol XWebView;
 
 
-@interface EMWebViewController : UIViewController<UIWebViewDelegate, UIViewControllerRouter, UIViewControllerShareSupport, UIViewControllerSearchSupport>
+@interface EMWebViewController : UIViewController<UIWebViewDelegate, WKUIDelegate, WKNavigationDelegate,UIViewControllerRouter, UIViewControllerShareSupport, UIViewControllerSearchSupport>
 {
     
 }

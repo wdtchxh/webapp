@@ -17,7 +17,6 @@
 #import <EMSpeed/MSCore.h>
 #import <EMSpeed/MSUIKitCore.h>
 
-//#import <RDVTabBarController/RDVTabBarController.h>
 #import <EMSocialKit/EMSocialSDK.h>
 #import <BDKNotifyHUD.h>
 
@@ -32,9 +31,7 @@
 #import "WebViewJavascriptBridgeProtocol.h"
 #import "UIWebView+Context.h"
 
-#import "XWebView.h"
-#import "WKWebView+XWebView.h"
-#import "UIWebView+XWebView.h"
+
 
 // MenuItems
 #import "MSSearchMenuItem.h"
@@ -51,7 +48,7 @@ static BOOL kEnableWKWebView = NO;
 static NSString *const kNavigaionBarHiddenMetaJS = @"document.getElementsByName('app-navigation-bar-hidden')[0].getAttribute('content')";
 static const BOOL kNavigationBarHidden = YES;
 
-@interface EMWebViewController () <UIViewControllerRouter, WKUIDelegate, WKNavigationDelegate>
+@interface EMWebViewController ()
 {
     NSInteger navigationBarStatus;// 储存navigationBar显示状态
     UILongPressGestureRecognizer *_longPress;
