@@ -7,5 +7,6 @@ end
 
 target 'MSAppModuleWebApp_Tests', :exclusive => true do
   pod 'MSAppModuleWebApp', :path => '../'
+  pod 'commonLib', :git => 'https://github.com/yanghl/commonLib.git'
 
 end

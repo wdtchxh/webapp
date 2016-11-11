@@ -10,7 +10,8 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "MSAppSettingsWebApp.h"
 #import "MSWebAppInfo.h"
-#import <EMSpeed/MSCore.h>
+#import "NSDictionary+JSONString.h"
+//#import <EMSpeed/MSCore.h>
 
 //TODO
 //extern int User_hasStockAtZXG(NSInteger);

@@ -14,11 +14,11 @@
 #import "MSAppSettingsWebApp.h"
 
 #import <JLRoutes/JLRoutes.h>
-#import <EMSpeed/MSCore.h>
-#import <EMSpeed/MSUIKitCore.h>
+//#import <EMSpeed/MSCore.h>
+//#import <EMSpeed/MSUIKitCore.h>
 
 #import <EMSocialKit/EMSocialSDK.h>
-#import <BDKNotifyHUD.h>
+//#import <BDKNotifyHUD.h>
 
 #import "EMSocialSDK+URLBind.h"
 #import "NSURL+AuthedURL.h"
@@ -826,7 +826,8 @@ static const BOOL kNavigationBarHidden = YES;
             }
         } else {
             if (message.length > 0) {
-                [BDKNotifyHUD showNotifHUDWithText:message];
+                NSLog(@"EMWebViewController 829 show BDKNotifyHUD");
+               // [BDKNotifyHUD showNotifHUDWithText:message];
             }
         }
     }];

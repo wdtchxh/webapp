@@ -35,12 +35,11 @@ Pod::Spec.new do |s|
     ss.source_files = 'Pod/Classes/**/*'
     ss.resource     = 'Pod/Assets/**/*.js', 'Pod/Assets/**/*.png'
 
-    ss.dependency 'MSAppModuleShare'
     ss.dependency 'MSRoutes'
     ss.dependency 'MSAppModuleKit'
-    ss.dependency 'EMSpeed/UIKit/Core'
-    ss.dependency 'EMSpeed/UIKit/UIKitCollections'
-    ss.dependency 'EMSpeed/UIKit/FontAwesome+iOS'
+    ss.dependency 'EMSocialKit'
+#ss.dependency 'EMSpeed/UIKit/UIKitCollections'
+#ss.dependency 'EMSpeed/UIKit/FontAwesome+iOS'
     ss.dependency 'SDWebImage'
     ss.dependency 'MSAppModuleWebApp/WebBridgeCore'
 

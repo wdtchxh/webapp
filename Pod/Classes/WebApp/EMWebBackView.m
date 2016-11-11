@@ -7,7 +7,7 @@
 //
 
 #import "EMWebBackView.h"
-#import <FontAwesome.h>
+//#import <FontAwesome.h>
 
 @implementation EMWebBackView
 
@@ -109,11 +109,13 @@
 //        titleColor = [UIColor lightGrayColor];
 //    }
 
-    UIImage *image = [UIImage imageWithIcon:@"em-icon-back"
-                            backgroundColor:[UIColor clearColor]
-                                  iconColor:titleColor
-                                  iconScale:1//NIScreenScale()
-                                    andSize:CGSizeMake(23, 23)];
+//    UIImage *image = [UIImage imageWithIcon:@"em-icon-back"
+//                            backgroundColor:[UIColor clearColor]
+//                                  iconColor:titleColor
+//                                  iconScale:1//NIScreenScale()
+//                                    andSize:CGSizeMake(23, 23)];
+    NSLog(@"EMWebBackView.m---- backImage");
+    UIImage *image = [UIImage imageNamed:@"em-icon-back"];
     return image;
 }
 

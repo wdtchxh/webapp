@@ -7,7 +7,8 @@
 //
 
 #import "NSURL+RoutableURL.h"
-#import <EMSpeed/MSCore.h>
+#import <commonLib/NSString+URLEncoding.h>
+//#import <EMSpeed/MSCore.h>
 
 @implementation NSURL (RoutableURL)
 

@@ -12,7 +12,7 @@
 #import "MSWebAppInfo.h"
 #import "EMShareEntity.h"
 #import "EMWebViewController.h"
-#import "BDKNotifyHUD.h"
+//#import "BDKNotifyHUD.h"
 #import "JSBridgeModule.h"
 #import <JLRoutes/JLRoutes.h>
 #import "MSCustomMenuItem.h"
@@ -160,7 +160,8 @@ JS_EXPORT_MODULE();
 - (void)registerShowNotifyWithBridge:(JSBridge *)bridge {
     [self registerHandler:@"showNotify" handler:^(id data, WVJBResponseCallback responseCallback) {
         NSString *message = data[@"message"];
-        [BDKNotifyHUD showNotifHUDWithText:message];
+        NSLog(@"JSBridgeModuleBase.m 163 show BDKNotifyHUD");
+        //[BDKNotifyHUD showNotifHUDWithText:message];
         responseCallback(@{JSResponseErrorCodeKey:@(JSResponseErrorCodeSuccess)});
     }];
 }

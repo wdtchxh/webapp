@@ -8,7 +8,7 @@
 
 #import "UIWebView+jsToObject.h"
 #import <JavaScriptCore/JavaScriptCore.h>
-#import <EMSpeed/MSCore.h>
+#import <commonLib/MSCoreFileManager.h>
 
 #define kJSBridgeFileName @"EMJSBridge.js"
 
@@ -26,7 +26,11 @@
     static NSString *g_jsString = nil;
     if (g_jsString == nil)
     {
-        NSString *path = MSPathForBundleResource([NSBundle mainBundle], kJSBridgeFileName);
+        //NSString *path2 = MSPathForBundleResource([NSBundle mainBundle], kJSBridgeFileName);
+        
+        NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
+        NSString *path = [resourcePath stringByAppendingPathComponent:kJSBridgeFileName];
+        
         NSError *error = nil;
         g_jsString = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
     }

@@ -7,7 +7,8 @@
 //
 
 #import "MSWebAppInfo.h"
-#import <EMSpeed/MSUIKitCore.h>
+#import "UIApplication+AppVersion.h"
+#import "UIDevice+IdentifierAddition.h"
 
 @implementation MSWebAppInfo
 

@@ -9,7 +9,8 @@
 #import "NSURL+AuthedURL.h"
 #import "MSAppModuleWebApp.h"
 #import "MSWebAppInfo.h"
-#import <EMSpeed/MSCore.h>
+#import <commonLib/NSDictionary+Query.h>
+//#import <EMSpeed/MSCore.h>
 
 @implementation NSURL (AuthedURL)
 

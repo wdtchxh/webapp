@@ -8,7 +8,7 @@
 
 #import "MSViewController2.h"
 #import "EMWebViewController.h"
-
+#import <commonLib/MSCoreFileManager.h>
 @interface MSViewController2 ()
 
 @property (nonatomic, assign) IBOutlet UITextField *textField;
@@ -34,6 +34,8 @@
 {
     [super viewDidLoad];
     NSLog(@"viewDidLoad");
+    
+    NSString *path = MSPathForBundleResource([NSBundle mainBundle], @"");
     
 }
 
