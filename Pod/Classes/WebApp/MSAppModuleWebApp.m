@@ -24,9 +24,7 @@
 
 }
 
-- (void)moduleDidUnload:(id<MSAppSettings>)info {
-    [super moduleDidUnload:info];
-}
+
 
 - (void)moduleRegisterRoutes:(JLRoutes *)route {
     [route registerRoutesForWebApp];

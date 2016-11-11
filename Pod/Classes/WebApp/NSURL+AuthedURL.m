@@ -15,7 +15,7 @@
 
 + (NSURL *)authedURLWithURL:(NSURL *)plainURL {
     
-    MSAppModuleWebApp *webApp = [appModuleManager appModuleWithModuleName:NSStringFromClass([MSAppModuleWebApp class])];
+    MSAppModuleWebApp *webApp = [appModuleManager appModuleWithModuleClass:[MSAppModuleWebApp class]];
     id<MSAppSettingsWebApp> settings = (id<MSAppSettingsWebApp>)[webApp moduleSettings];
     NSDictionary *authInfo = [MSWebAppInfo getWebAppInfoWithSettings:settings];
     
