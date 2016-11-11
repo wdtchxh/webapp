@@ -8,6 +8,4 @@ end
 target 'MSAppModuleWebApp_Tests', :exclusive => true do
   pod 'MSAppModuleWebApp', :path => '../'
 
-  pod 'Specta'
-  pod 'Expecta'
 end

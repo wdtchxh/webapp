@@ -7,7 +7,6 @@
 //
 
 #import "EMWebBackView.h"
-#import <MSThemeKit/MSThemeKit.h>
 #import <FontAwesome.h>
 
 @implementation EMWebBackView
@@ -36,10 +35,10 @@
     {
         if (nil == _closeButton)
         {
-            UIColor *titleColor = [UIColor colorForKey:@"common_navbarItemTextColor"];
-            if (!titleColor) {
-                titleColor = [UIColor lightGrayColor];
-            }
+            UIColor *titleColor = [UIColor lightGrayColor];
+//            if (!titleColor) {
+//                titleColor = [UIColor lightGrayColor];
+//            }
             _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
             [_closeButton setTitleColor:titleColor forState:UIControlStateNormal];
             [_closeButton setTitle:@"关闭" forState:UIControlStateNormal];
@@ -105,10 +104,10 @@
 }
 
 - (UIImage *)backImage {
-    UIColor *titleColor = [UIColor colorForKey:@"common_navbarItemTextColor"];
-    if (!titleColor) {
-        titleColor = [UIColor lightGrayColor];
-    }
+    UIColor *titleColor = [UIColor lightGrayColor];
+//    if (!titleColor) {
+//        titleColor = [UIColor lightGrayColor];
+//    }
 
     UIImage *image = [UIImage imageWithIcon:@"em-icon-back"
                             backgroundColor:[UIColor clearColor]

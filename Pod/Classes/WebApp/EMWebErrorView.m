@@ -8,8 +8,6 @@
 
 #import "EMWebErrorView.h"
 #import <Masonry/Masonry.h>
-#import <MSThemeKit/MSThemeKit.h>
-#import <UIColor-HexString/UIColor+HexString.h>
 
 @interface EMWebErrorView ()
 
@@ -26,7 +24,8 @@
         self.imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"web_icon_logo"]];
         [self addSubview:self.imageView];
 
-        UIColor *textColor = [UIColor colorWithHexString:@"#8e8e8e"];
+        //UIColor *textColor = [UIColor colorWithHexString:@"#8e8e8e"];
+        UIColor *textColor = [UIColor redColor];
         UIFont *textFont = [UIFont systemFontOfSize:12];
 
         self.titleLabel = [[UILabel alloc] initWithFrame:self.bounds];

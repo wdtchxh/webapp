@@ -35,20 +35,14 @@ Pod::Spec.new do |s|
     ss.source_files = 'Pod/Classes/**/*'
     ss.resource     = 'Pod/Assets/**/*.js', 'Pod/Assets/**/*.png'
 
-    ss.dependency 'UIColor-HexString', '~> 1.1.0'
     ss.dependency 'MSAppModuleShare'
     ss.dependency 'MSRoutes'
-    ss.dependency 'MSThemeKit'
     ss.dependency 'MSAppModuleKit'
     ss.dependency 'EMSpeed/UIKit/Core'
     ss.dependency 'EMSpeed/UIKit/UIKitCollections'
     ss.dependency 'EMSpeed/UIKit/FontAwesome+iOS'
-    ss.dependency 'RDVTabBarController'
-    ss.dependency 'EMClick'
     ss.dependency 'SDWebImage'
     ss.dependency 'MSAppModuleWebApp/WebBridgeCore'
-    ss.dependency 'UIImage+RTTint', '~> 1.0.0'
-    ss.dependency 'Masonry'
 
   end
 

@@ -16,9 +16,8 @@
 #import <JLRoutes/JLRoutes.h>
 #import <EMSpeed/MSCore.h>
 #import <EMSpeed/MSUIKitCore.h>
-#import <MSThemeKit/MSThemeKit.h>
-#import <EMClick/EMClick.h>
-#import <RDVTabBarController/RDVTabBarController.h>
+
+//#import <RDVTabBarController/RDVTabBarController.h>
 #import <EMSocialKit/EMSocialSDK.h>
 #import <BDKNotifyHUD.h>
 
@@ -262,8 +261,8 @@ static const BOOL kNavigationBarHidden = YES;
         [WebViewJavascriptBridge enableLogging];
         
         UIWebView *webView = [[[[self class] webViewClass] alloc] initWithFrame:self.view.bounds];
-        webView.backgroundColor = [UIColor colorForKey:@"common_bgColor"];
-        webView.scrollView.backgroundColor = [UIColor colorForKey:@"common_bgColor"];
+//        webView.backgroundColor = [UIColor colorForKey:@"common_bgColor"];
+//        webView.scrollView.backgroundColor = [UIColor colorForKey:@"common_bgColor"];
         
         webView.opaque = NO;
         webView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -325,7 +324,8 @@ static const BOOL kNavigationBarHidden = YES;
 }
 
 - (void)changeTabbarStatus {
-    [self.rdv_tabBarController setTabBarHidden:YES];
+    NSLog(@"emwebviewcontroller  hidden tab");
+    //  [self.rdv_tabBarController setTabBarHidden:YES];
 }
 
 - (void)changeNavigationBarStatusAnimated:(BOOL)animated {
@@ -365,7 +365,7 @@ static const BOOL kNavigationBarHidden = YES;
             self.statusBarBackView.frame = topBarRect;
         }
         
-        self.statusBarBackView.backgroundColor = [UIColor colorForKey:@"common_webStatusBarColor"];
+        //self.statusBarBackView.backgroundColor = [UIColor colorForKey:@"common_webStatusBarColor"];
         [self.view addSubview:self.statusBarBackView];
     } else {
         [self.statusBarBackView removeFromSuperview];
@@ -597,7 +597,7 @@ static const BOOL kNavigationBarHidden = YES;
     customMenuItem.icon = @"web_share";
     
     JSMenuItemButton *button = [[JSMenuItemButton alloc] init];
-    button.tintColor = [UIColor colorForKey:@"common_navbarItemTextColor"];
+    //button.tintColor = [UIColor colorForKey:@"common_navbarItemTextColor"];
     button.menuItem = customMenuItem;
     
     [button addTarget:self action:@selector(doShare) forControlEvents:UIControlEventTouchUpInside];
@@ -611,7 +611,7 @@ static const BOOL kNavigationBarHidden = YES;
     customMenuItem.icon = @"web_search";
 
     JSMenuItemButton *button = [[JSMenuItemButton alloc] init];
-    button.tintColor = [UIColor colorForKey:@"common_navbarItemTextColor"];
+    //button.tintColor = [UIColor colorForKey:@"common_navbarItemTextColor"];
     button.menuItem = customMenuItem;
     
     [button addTarget:self action:@selector(doSearch) forControlEvents:UIControlEventTouchUpInside];
@@ -659,7 +659,7 @@ static const BOOL kNavigationBarHidden = YES;
 #else
         MSCustomMenuItem *customMenuItem = (MSCustomMenuItem *)item;
         JSMenuItemButton *button = [[JSMenuItemButton alloc] init];
-        button.tintColor = [UIColor colorForKey:@"common_navbarItemTextColor"];
+        //button.tintColor = [UIColor colorForKey:@"common_navbarItemTextColor"];
         button.menuItem = customMenuItem;
         
         [button addTarget:self action:@selector(customMeunItemButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -750,7 +750,7 @@ static const BOOL kNavigationBarHidden = YES;
 }
 
 - (void)doSearch {
-    [EMClick event:@"web:search" attributes:self.eventAttributes];
+   // [EMClick event:@"web:search" attributes:self.eventAttributes];
     if ([super respondsToSelector:_cmd]) {
         [super doSearch];
     }
@@ -764,7 +764,7 @@ static const BOOL kNavigationBarHidden = YES;
 
 #pragma mark - Share
 - (void)share:(EMShareEntity *)shareEntity {
-    [EMClick event:@"web:share" attributes:self.eventAttributes];
+    //[EMClick event:@"web:share" attributes:self.eventAttributes];
     NSString *callback = shareEntity.callback;
     
     [[EMSocialSDK sharedSDK] shareEntity:shareEntity rootViewController:self completionHandler:^(NSString *activityType, BOOL completed, NSDictionary *returnedInfo, NSError *activityError) {
@@ -841,7 +841,7 @@ static const BOOL kNavigationBarHidden = YES;
 // 这个时候在`-viewDidAppear`里面统计这个page
 - (void)trackBackFromViewDidAppear {
     if (_currentURLString) {
-        [EMClick beginLogPageView:@"web"];
+        //[EMClick beginLogPageView:@"web"];
     }
 }
 
@@ -856,7 +856,7 @@ static const BOOL kNavigationBarHidden = YES;
 
     _currentURLString = urlString;
     
-    [EMClick beginLogPageView:@"web"];
+    //[EMClick beginLogPageView:@"web"];
 }
 
 - (void)endTrackingLastPage {
@@ -872,7 +872,7 @@ static const BOOL kNavigationBarHidden = YES;
             if (title && title.length) {
                 atrributes[@"title"] = title;
             }
-            [EMClick endLogPageView:@"web" attributes:atrributes];
+           // [EMClick endLogPageView:@"web" attributes:atrributes];
         }];
     }
 }
