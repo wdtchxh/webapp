@@ -9,9 +9,6 @@
 @import UIKit;
 
 @interface MSViewController2 : UIViewController
-
-//+ (UIColor *) colorWithHexString: (NSString *) hexString;
-
 @property (weak, nonatomic) IBOutlet UIImageView *testImage;
 
 @end

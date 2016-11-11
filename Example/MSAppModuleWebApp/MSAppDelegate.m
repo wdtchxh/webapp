@@ -19,6 +19,7 @@
     //
     [appModuleManager addModule:[MSAppModuleWebApp new]];
 
+    NSLog(@"didFinishLaunchingWithOptions");
     return YES;
 }
 
