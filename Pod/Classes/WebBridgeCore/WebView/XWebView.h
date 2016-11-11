@@ -34,10 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)x_loadRequest:(NSURLRequest *)request;
 - (void)x_loadHTMLString:(NSString *)string baseURL:(nullable NSURL *)baseURL;
 - (void)x_evaluateJavaScript:(NSString *)javaScriptString;
-
-
 - (void)x_reload;
-
 - (void)x_goBack;
 - (void)x_goForward;
 
