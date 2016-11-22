@@ -12,13 +12,8 @@
 #import "EMWebBackView.h"
 #import "MSWebAppInfo.h"
 #import "MSAppSettingsWebApp.h"
-
 #import <JLRoutes/JLRoutes.h>
-//#import <EMSpeed/MSCore.h>
-//#import <EMSpeed/MSUIKitCore.h>
-
 #import <EMSocialKit/EMSocialSDK.h>
-//#import <BDKNotifyHUD.h>
 
 #import "EMSocialSDK+URLBind.h"
 #import "NSURL+AuthedURL.h"
@@ -31,8 +26,6 @@
 #import "WebViewJavascriptBridgeProtocol.h"
 #import "UIWebView+Context.h"
 
-
-
 // MenuItems
 #import "MSSearchMenuItem.h"
 #import "MSShareMenuItem.h"
@@ -42,6 +35,8 @@
 
 // ErrorView
 #import "EMWebErrorView.h"
+
+#import <commonLib/MSAppModuleController.h>
 
 static BOOL kEnableWKWebView = NO;
 

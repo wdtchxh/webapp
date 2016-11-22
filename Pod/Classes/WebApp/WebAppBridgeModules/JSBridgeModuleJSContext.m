@@ -8,7 +8,7 @@
 
 #import "JSBridgeModuleJSContext.h"
 #import <JavaScriptCore/JavaScriptCore.h>
-#import "MSAppSettings.h"
+#import <commonLib/CommonAppSettings.h>
 #import "NSDictionary+JSONString.h"
 #import "MSWebAppInfo.h"
 #import "JSBridge.h"
@@ -49,7 +49,7 @@ JS_EXPORT_MODULE();
     
     [self registerHandler:@"canOpenURL" JSContextHandler:(id)CanOpenURL];
     
-    id<MSAppSettingsWebApp> settings = (id<MSAppSettingsWebApp>)[MSAppSettings appSettings];
+    id<MSAppSettingsWebApp> settings = (id<MSAppSettingsWebApp>)[CommonAppSettings appSettings];
 
 //#warning 实现自选股JS
 #if 0

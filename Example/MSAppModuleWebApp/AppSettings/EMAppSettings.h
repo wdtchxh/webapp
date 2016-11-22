@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MSAppSettings.h"
 #import "EMSettingsCondition.h"
-
+#import <commonLib/CommonAppSettings.h>
 
 #if __MODULE_SHARE_ENABLED__
     #import <MSAppModuleShare/EMAppShareSettings.h>
@@ -19,9 +18,9 @@
     #import <MSAppModuleWebApp/MSAppSettingsWebApp.h>
 #endif /* __MODULE_WEB_APP_ENABLED__ */
 
-@protocol MSAppSettings;
+@protocol CommonAppSettings;
 
-@interface EMAppSettings : MSAppSettings <
+@interface EMAppSettings : CommonAppSettings <
 
 #if __MODULE_SHARE_ENABLED__
 EMAppShareSettings,

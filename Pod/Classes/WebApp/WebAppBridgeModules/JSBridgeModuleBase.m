@@ -12,12 +12,11 @@
 #import "MSWebAppInfo.h"
 #import "EMShareEntity.h"
 #import "EMWebViewController.h"
-//#import "BDKNotifyHUD.h"
 #import "JSBridgeModule.h"
 #import <JLRoutes/JLRoutes.h>
 #import "MSCustomMenuItem.h"
 #import "EMShareEntity+Parameters.h"
-
+#import <commonLib/CommonAppSettings.h>
 @implementation JSBridgeModuleBase
 
 @synthesize bridge = _bridge;
@@ -92,7 +91,7 @@ JS_EXPORT_MODULE();
 
 - (void)registerGetAppInfoWithBridge:(JSBridge *)bridge {
     [self registerHandler:@"getAppInfo2" handler:^(id data, WVJBResponseCallback responseCallback) {
-        id<MSAppSettingsWebApp> settings = (id<MSAppSettingsWebApp>)[MSAppSettings appSettings];
+        id<MSAppSettingsWebApp> settings = (id<MSAppSettingsWebApp>)[CommonAppSettings appSettings];
         NSDictionary *info = [MSWebAppInfo getWebAppInfoWithSettings:settings];
         responseCallback(@{JSResponseErrorCodeKey:@(JSResponseErrorCodeSuccess),
                            JSResponseErrorDataKey:info});

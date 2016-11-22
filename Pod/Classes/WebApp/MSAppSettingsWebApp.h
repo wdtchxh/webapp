@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <MSAppModuleKit/MSAppModuleKit.h>
+#import <commonLib/MSAppModule.h>
 
 typedef NSDictionary *(^MSWebAppAuthInfo)(void);
 typedef BOOL (^MSUserHasZXGHandler)(NSInteger);
 
-@protocol MSAppSettingsWebApp <MSAppSettings>
+@protocol MSAppSettingsWebApp <CommonAppSettings>
 
 @property (nonatomic, assign) NSInteger productID;
 @property (nonatomic, assign) NSInteger platformID;

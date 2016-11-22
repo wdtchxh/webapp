@@ -73,6 +73,7 @@
 		94BE18FA1CD2F99D0067E818 /* EMAppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMAppSettings.h; sourceTree = "<group>"; };
 		94BE18FB1CD2F99D0067E818 /* EMAppSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMAppSettings.m; sourceTree = "<group>"; };
 		94BE18FC1CD2F99D0067E818 /* EMSettingsCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSettingsCondition.h; sourceTree = "<group>"; };
+		9B675D711DE44F6600D8D59F /* libcommonLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcommonLib.a; path = "Pods/../build/Debug-iphoneos/commonLib/libcommonLib.a"; sourceTree = "<group>"; };
 		9BF9CA661DD4784D00215061 /* zdlh_paid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zdlh_paid@2x.png"; sourceTree = "<group>"; };
 		9BF9CA681DD478F900215061 /* zzz.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = zzz.jpeg; sourceTree = "<group>"; };
 		9BF9CA6A1DD47B3800215061 /* aa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aa.png; sourceTree = "<group>"; };
@@ -145,6 +146,7 @@
 		6003F58C195388D20070C39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9B675D711DE44F6600D8D59F /* libcommonLib.a */,
 				94AD64F51CDE498100B2D803 /* WebKit.framework */,
 				6003F58D195388D20070C39A /* Foundation.framework */,
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
@@ -234,12 +236,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "MSAppModuleWebApp_Example" */;
 			buildPhases = (
-				C5FEF6DC67B7D8E6E1A6F317 /* Check Pods Manifest.lock */,
+				C5FEF6DC67B7D8E6E1A6F317 /* [CP] Check Pods Manifest.lock */,
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				21552B6884490D1C1D39AFBF /* Embed Pods Frameworks */,
-				63CE4FAA1262D7D04B0A028A /* Copy Pods Resources */,
+				21552B6884490D1C1D39AFBF /* [CP] Embed Pods Frameworks */,
+				63CE4FAA1262D7D04B0A028A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -254,12 +256,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "MSAppModuleWebApp_Tests" */;
 			buildPhases = (
-				4190AA071FDB2A0C6CF07FF9 /* Check Pods Manifest.lock */,
+				4190AA071FDB2A0C6CF07FF9 /* [CP] Check Pods Manifest.lock */,
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				A7B9D3412486E3F99D69C44A /* Embed Pods Frameworks */,
-				8C28028B52B61707B676CF52 /* Copy Pods Resources */,
+				A7B9D3412486E3F99D69C44A /* [CP] Embed Pods Frameworks */,
+				8C28028B52B61707B676CF52 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -332,14 +334,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		21552B6884490D1C1D39AFBF /* Embed Pods Frameworks */ = {
+		21552B6884490D1C1D39AFBF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,29 +349,29 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MSAppModuleWebApp_Example/Pods-MSAppModuleWebApp_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4190AA071FDB2A0C6CF07FF9 /* Check Pods Manifest.lock */ = {
+		4190AA071FDB2A0C6CF07FF9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		63CE4FAA1262D7D04B0A028A /* Copy Pods Resources */ = {
+		63CE4FAA1262D7D04B0A028A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,14 +379,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MSAppModuleWebApp_Example/Pods-MSAppModuleWebApp_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8C28028B52B61707B676CF52 /* Copy Pods Resources */ = {
+		8C28028B52B61707B676CF52 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -392,14 +394,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MSAppModuleWebApp_Tests/Pods-MSAppModuleWebApp_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A7B9D3412486E3F99D69C44A /* Embed Pods Frameworks */ = {
+		A7B9D3412486E3F99D69C44A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,19 +409,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MSAppModuleWebApp_Tests/Pods-MSAppModuleWebApp_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C5FEF6DC67B7D8E6E1A6F317 /* Check Pods Manifest.lock */ = {
+		C5FEF6DC67B7D8E6E1A6F317 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -556,6 +558,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MSAppModuleWebApp/MSAppModuleWebApp-Prefix.pch";
 				INFOPLIST_FILE = "MSAppModuleWebApp/MSAppModuleWebApp-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/commonLib",
+				);
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -572,6 +578,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MSAppModuleWebApp/MSAppModuleWebApp-Prefix.pch";
 				INFOPLIST_FILE = "MSAppModuleWebApp/MSAppModuleWebApp-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/commonLib",
+				);
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";

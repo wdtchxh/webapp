@@ -35,11 +35,10 @@ Pod::Spec.new do |s|
     ss.source_files = 'Pod/Classes/**/*'
     ss.resource     = 'Pod/Assets/**/*.js', 'Pod/Assets/**/*.png'
 
-    ss.dependency 'MSRoutes'
-    ss.dependency 'MSAppModuleKit'
+    #ss.dependency 'MSAppModuleKit'
     ss.dependency 'EMSocialKit'
-#ss.dependency 'EMSpeed/UIKit/UIKitCollections'
-#ss.dependency 'EMSpeed/UIKit/FontAwesome+iOS'
+    #ss.dependency 'EMSpeed/UIKit/UIKitCollections'
+    #ss.dependency 'EMSpeed/UIKit/FontAwesome+iOS'
     ss.dependency 'SDWebImage'
     ss.dependency 'MSAppModuleWebApp/WebBridgeCore'
 
@@ -47,7 +46,7 @@ Pod::Spec.new do |s|
 
 
   s.subspec 'WebBridgeCore' do |ss|
-#ss.source_files = 'Pod/Classes/WebBridgeCore/**/*'
+    #ss.source_files = 'Pod/Classes/WebBridgeCore/**/*'
     ss.frameworks = 'UIKit', 'Foundation', 'JavaScriptCore', 'WebKit'
     ss.dependency 'WebViewJavascriptBridge'
 

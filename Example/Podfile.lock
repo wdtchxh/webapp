@@ -35,10 +35,8 @@ PODS:
     - TencentOpenApiSDK (~> 2.9.5)
     - UIImage-ResizeMagick@NoWarnings (~> 0.0.2)
     - WeiboSDK (~> 3.0)
-  - JLRoutes (1.5.5)
+  - JLRoutes (2.0)
   - JSONModel (1.7.0)
-  - MSAppModuleKit (0.0.16):
-    - MSRoutes
   - MSAppModuleWebApp (0.2.3):
     - MSAppModuleWebApp/WebBridgeCore (= 0.2.3)
     - MSAppModuleWebApp/WebViewController (= 0.2.3)
@@ -46,12 +44,8 @@ PODS:
     - WebViewJavascriptBridge
   - MSAppModuleWebApp/WebViewController (0.2.3):
     - EMSocialKit
-    - MSAppModuleKit
     - MSAppModuleWebApp/WebBridgeCore
-    - MSRoutes
     - SDWebImage
-  - MSRoutes (0.1.2):
-    - JLRoutes (~> 1.5.3)
   - PINCache (2.3)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
@@ -75,7 +69,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   commonLib:
-    :commit: 2c809f9bb773023a0c984dbe2030480d57e5808d
+    :commit: a959fd6b961cbabd033d8d151ab46ccdd3ddc2ff
     :git: https://github.com/yanghl/commonLib.git
 
 SPEC CHECKSUMS:
@@ -84,11 +78,9 @@ SPEC CHECKSUMS:
   commonLib: 2e7f3e2f3f0ab757fd1cf4582b9c8e66bf17dab4
   DXYWeChatSDK: 6a23dbf67a4545bfc80e3e18f9b5cf0c98699576
   EMSocialKit: 346b5322f8b3c3a73305e6bbf7a7c3a8d51bde6e
-  JLRoutes: d191a496b820f60d70225202d04289582da962df
+  JLRoutes: 0bead23690bafa726e1528aa6459a56c9b81cb5e
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
-  MSAppModuleKit: 39b9e18656df55c00c85609f1452f5030fbd9b2b
-  MSAppModuleWebApp: 891564452a5538eefdbbca00e198325ccb2a0316
-  MSRoutes: 09a729dc8d82f47a7f297bf2ab5b5c2081975db4
+  MSAppModuleWebApp: 961c964bc8e4d593ac5c371ea80a16bdd25f7121
   PINCache: ce36ed282031b92fc7733ffe831f474ff80fddc2
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   TencentOpenApiSDK: a0d7716edd6eb438d65828168e8e5137301b436d
@@ -96,4 +88,6 @@ SPEC CHECKSUMS:
   WebViewJavascriptBridge: a4d502315f1b8d9a51cd6a9174147ed567ec3bc5
   WeiboSDK: acb067053668102cf07d01aa7604350162c2e466
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 6fe88769ac5b592670af3a9be126ee902887a612
+
+COCOAPODS: 1.1.1

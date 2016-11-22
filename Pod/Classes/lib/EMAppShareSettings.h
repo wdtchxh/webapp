@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <commonLib/CommonAppSettings.h>
 @class EMSocialDefaultConfigurator;
-@protocol MSAppSettings;
+@protocol CommonAppSettings;
 
-@protocol EMAppShareSettings <MSAppSettings>
+@protocol EMAppShareSettings <CommonAppSettings>
 
 @property (nonatomic, strong) EMSocialDefaultConfigurator *shareConfigurator;
 @property (nonatomic, strong) NSString *theme; // white or black

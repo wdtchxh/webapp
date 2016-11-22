@@ -9,7 +9,7 @@
 #import "MSAppDelegate.h"
 #import "EMAppSettings.h"
 #import <MSAppModuleWebApp.h>
-
+#import <commonLib/MSAppModuleController.h>
 @implementation MSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

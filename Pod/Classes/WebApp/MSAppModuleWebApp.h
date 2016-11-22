@@ -6,8 +6,7 @@
 //
 //
 
-#import <MSAppModuleKit/MSAppModuleKit.h>
-
+#import <commonLib/MSAppModule.h>
 @interface MSAppModuleWebApp : MSAppModule
 
 @end

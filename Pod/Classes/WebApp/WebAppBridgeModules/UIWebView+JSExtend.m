@@ -11,6 +11,8 @@
 #import "MSAppSettingsWebApp.h"
 #import "MSWebAppInfo.h"
 #import "NSDictionary+JSONString.h"
+#import <commonLib/MSAppModuleController.h>
+#import <commonLib/CommonAppSettings.h>
 //#import <EMSpeed/MSCore.h>
 
 //TODO
@@ -38,7 +40,7 @@
     [goods setObject:CanOpenURL forKeyedSubscript:@"canOpenURL"];
     NSLog(@"[goods toDictionary]= %@", [goods toDictionary]);
     
-    id<MSAppSettingsWebApp> settings = (id<MSAppSettingsWebApp>)[MSAppSettings appSettings];
+    id<MSAppSettingsWebApp> settings = (id<MSAppSettingsWebApp>)[CommonAppSettings appSettings];
 
 #if 1
 //    // TODO isZXG
@@ -59,7 +61,7 @@
 //    };
     
     BOOL (^IsZxg)(NSString *, NSString *callback) = ^BOOL(NSString *stockId, NSString *callback) {
-        id<MSAppSettingsWebApp>appSettings = (id<MSAppSettingsWebApp>)[MSAppSettings appSettings];
+        id<MSAppSettingsWebApp>appSettings = (id<MSAppSettingsWebApp>)[CommonAppSettings appSettings];
         
         if (appSettings.userHasZXGHandler) {
             NSInteger goodsId = [stockId integerValue];
