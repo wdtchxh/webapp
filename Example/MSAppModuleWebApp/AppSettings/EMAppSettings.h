@@ -40,13 +40,12 @@ NSObject
 #endif /* EMAppShareSettings */
 
 #if __MODULE_WEB_APP_ENABLED__
-@property (nonatomic, assign) NSInteger platformID;
-@property (nonatomic, assign) NSInteger vendorID;
-@property (nonatomic, strong) NSArray *supportsURLSchemes;
-@property (nonatomic, strong, readonly) NSString *mainURLScheme;
 
-@property (nonatomic,  copy) MSWebAppAuthInfo webAppAuthInfo;
-@property (nonatomic,  copy) MSUserHasZXGHandler userHasZXGHandler;
+@property (nonatomic, strong) NSArray *supportsURLSchemes;
+
+
+//@property (nonatomic,  copy) MSWebAppAuthInfo webAppAuthInfo;
+//@property (nonatomic,  copy) MSUserHasZXGHandler userHasZXGHandler;
 
 #endif /* __MODULE_WEB_APP_ENABLED__ */
 /**

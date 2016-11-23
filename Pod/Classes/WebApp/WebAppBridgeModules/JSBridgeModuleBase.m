@@ -9,7 +9,6 @@
 #import "JSBridgeModuleBase.h"
 #import "JSBridge.h"
 #import "MSAppSettingsWebApp.h"
-#import "MSWebAppInfo.h"
 #import "EMShareEntity.h"
 #import "EMWebViewController.h"
 #import "JSBridgeModule.h"
@@ -92,9 +91,10 @@ JS_EXPORT_MODULE();
 - (void)registerGetAppInfoWithBridge:(JSBridge *)bridge {
     [self registerHandler:@"getAppInfo2" handler:^(id data, WVJBResponseCallback responseCallback) {
         id<MSAppSettingsWebApp> settings = (id<MSAppSettingsWebApp>)[CommonAppSettings appSettings];
-        NSDictionary *info = [MSWebAppInfo getWebAppInfoWithSettings:settings];
+        //NSDictionary *info = [MSWebAppInfo getWebAppInfoWithSettings:settings];
         responseCallback(@{JSResponseErrorCodeKey:@(JSResponseErrorCodeSuccess),
-                           JSResponseErrorDataKey:info});
+                           JSResponseErrorDataKey:@{}});//
+                           //JSResponseErrorDataKey:info});//
     }];
 }
 

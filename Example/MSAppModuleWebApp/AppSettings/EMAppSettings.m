@@ -26,26 +26,23 @@ NSString *DefaultVendorConfig();
 }
 
 
-- (NSString *)mainURLScheme {
-    return @"emstock";
-}
 
 - (NSArray *)supportsURLSchemes {
     return @[@"emstock",@"emlite"];
 }
-
--(MSUserHasZXGHandler)userHasZXGHandler{
-    return ^BOOL(NSInteger code) {
-        return code;
-    };
-}
-
-- (void)save
-{
-    [[NSUserDefaults standardUserDefaults] setObject:@(self.vendorID).stringValue forKey:@"em_vendorId"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-
-}
+//
+//-(MSUserHasZXGHandler)userHasZXGHandler{
+//    return ^BOOL(NSInteger code) {
+//        return code;
+//    };
+//}
+//
+//- (void)save
+//{
+//    [[NSUserDefaults standardUserDefaults] setObject:@(self.vendorID).stringValue forKey:@"em_vendorId"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+//
+//}
 
 @end
 

@@ -10,10 +10,9 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 #import <commonLib/CommonAppSettings.h>
 #import "NSDictionary+JSONString.h"
-#import "MSWebAppInfo.h"
 #import "JSBridge.h"
 #import "UIWebView+TS_JavaScriptContext.h"
-
+#import "MSAppSettingsWebApp.h"
 @implementation JSBridgeModuleJSContext
 
 JS_EXPORT_MODULE();
@@ -71,7 +70,8 @@ JS_EXPORT_MODULE();
     NSString *(^getAppInfo)() = ^NSString * () {
         [weakBridge.webView x_evaluateJavaScript:@"console.log(\"WARN:2.9.0以上使用getAppInfo2(null,function(info){})\")"];
 
-        return [[MSWebAppInfo getWebAppInfoWithSettings:settings] jsonString];
+        //return [[MSWebAppInfo getWebAppInfoWithSettings:settings] jsonString];
+        return @"";
     };
     [goods setObject:getAppInfo forKeyedSubscript:@"getAppInfo"];
     

@@ -10,14 +10,11 @@
 #import "MSAppModuleWebApp.h"
 #import "MSAppSettingsWebApp.h"
 #import "EMWebBackView.h"
-#import "MSWebAppInfo.h"
 #import "MSAppSettingsWebApp.h"
 #import <JLRoutes/JLRoutes.h>
 #import <EMSocialKit/EMSocialSDK.h>
 
 #import "EMSocialSDK+URLBind.h"
-#import "NSURL+AuthedURL.h"
-
 // Bridge
 #import <WebViewJavascriptBridge/WebViewJavascriptBridge.h>
 #import "UIWebView+TS_JavaScriptContext.h"
@@ -47,38 +44,36 @@ static const BOOL kNavigationBarHidden = YES;
 {
     NSInteger navigationBarStatus;// 储存navigationBar显示状态
     UILongPressGestureRecognizer *_longPress;
-    
     NSString *_currentURLString;
     BOOL _isPushBack;
     
 }
 
 @property (nonatomic, strong) UIView *statusBarBackView;
-@property (nonatomic, strong) EMWebBackView *backView;
-@property (nonatomic, strong) NSURLRequest *loadRequest;
-@property (nonatomic, strong, readwrite) UIView<XWebView> *webView;
-@property (nonatomic, strong, readwrite) UIColor *navigationBarColor;
+@property (nonatomic, strong) EMWebBackView *backView; //左上角返回按钮
+@property (nonatomic, strong) EMWebErrorView *errorView; //请求失败提示页面
+
+@property (nonatomic, strong) NSURLRequest *loadRequest;  //当前发出去的request对象 失败后可以用来重复发起
 @property (nonatomic, strong) NSURL *loadingURL;
+
+@property (nonatomic, strong, readwrite) UIView<XWebView> *webView;
+
 @property (nonatomic, strong) id<WebViewJavascriptBridgeProtocol>bridge;
 @property (nonatomic, strong) JSBridge *jsBridge;
-
-@property (nonatomic, strong) EMWebErrorView *errorView;
 
 @end
 
 @implementation EMWebViewController
 
-
-+ (Class)webViewClass {
-    return [UIWebView class];
-}
+//暂未发现有什么用
+//+ (Class)webViewClass {
+//    return [UIWebView class];
+//}
 
 - (void)dealloc {
     [self.jsBridge reset];
-    
     self.bridge = nil;
     self.jsBridge = nil;
-    
     [self.webView setUIDelegate:nil];
     self.webView = nil;
     self.backView = nil;
@@ -111,8 +106,7 @@ static const BOOL kNavigationBarHidden = YES;
 }
 
 - (instancetype)initWithURL:(NSURL *)URL {
-    NSURL *url = [NSURL authedURLWithURL:URL];
-    return [self initWithRequest:[NSURLRequest requestWithURL:url]];
+    return [self initWithRequest:[NSURLRequest requestWithURL:URL]];
 }
 
 - (instancetype)init {
@@ -122,19 +116,15 @@ static const BOOL kNavigationBarHidden = YES;
     return self;
 }
 
-#pragma mark -
 #pragma mark life cycle
-
 - (instancetype)initWithRequest:(NSURLRequest *)request {
     self = [super init];
     if (self) {
         self.hidesBottomBarWhenPushed = YES;
-        self.synchronizeDocumentTitle = YES;
-        
         if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
             self.edgesForExtendedLayout = UIRectEdgeAll;
         }
-        
+        self.synchronizeDocumentTitle = YES;
         [self setShowsCloseButton:YES];
         
         if (request) {
@@ -252,10 +242,7 @@ static const BOOL kNavigationBarHidden = YES;
     } else {
         [WebViewJavascriptBridge enableLogging];
         
-        UIWebView *webView = [[[[self class] webViewClass] alloc] initWithFrame:self.view.bounds];
-//        webView.backgroundColor = [UIColor colorForKey:@"common_bgColor"];
-//        webView.scrollView.backgroundColor = [UIColor colorForKey:@"common_bgColor"];
-        
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
         webView.opaque = NO;
         webView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         webView.scrollView.clipsToBounds = YES;
@@ -381,6 +368,7 @@ static const BOOL kNavigationBarHidden = YES;
     NSLog(@"%zd %@", error.code,[error localizedDescription]);
     
     if([error code] == NSURLErrorCancelled /* -999 */) {
+        [self showErrorView];
     } else if (error.code == NSURLErrorServerCertificateUntrusted /* -1202 */) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
                                                         message:@"请确认网页的证书"
@@ -395,7 +383,7 @@ static const BOOL kNavigationBarHidden = YES;
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
-    [self.errorView removeFromSuperview];
+    self.errorView.hidden=YES;
     MSAppModuleWebApp *webApp = [appModuleManager appModuleWithModuleName:NSStringFromClass([MSAppModuleWebApp class])];
     id<MSAppSettingsWebApp> settings = (id<MSAppSettingsWebApp>)[webApp moduleSettings];
     
@@ -732,6 +720,7 @@ static const BOOL kNavigationBarHidden = YES;
 }
 
 - (void)doRefresh {
+    [self hideErrorView];
     if ([_webView canGoBack]) {
         [_webView x_reload];
     } else {
@@ -878,6 +867,15 @@ static const BOOL kNavigationBarHidden = YES;
     [eventsAtrributes removeObjectForKey:kJLRouteNamespaceKey];
     [eventsAtrributes removeObjectForKey:kJLRouteWildcardComponentsKey];
     [eventsAtrributes removeObjectForKey:kJLRoutesGlobalNamespaceKey];
+    
+    
+//    [eventsAtrributes removeObjectForKey:JLRoutePatternKey];
+//    [eventsAtrributes removeObjectForKey:JLRouteURLKey];
+//    [eventsAtrributes removeObjectForKey:JLRouteSchemeKey];
+//    [eventsAtrributes removeObjectForKey:JLRouteWildcardComponentsKey];
+//    [eventsAtrributes removeObjectForKey:JLRoutesGlobalRoutesScheme];
+//    
+    
     
     return eventsAtrributes;
 }

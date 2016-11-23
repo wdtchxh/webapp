@@ -1,11 +1,3 @@
-//
-//  ymActionWebViewController.h
-//  ymActionWebView
-//
-//  Created by flora on 14-7-3.
-//  Copyright (c) 2014年 flora. All rights reserved.
-//
-//
 //1、加载网页
 //2、可通过设置synchronizeDocumentTitle = yes，同步在导航栏显示当前页面的标题，默认是yes
 //3、可通过各接口加载url、request、htmlstring
@@ -23,11 +15,9 @@
 #import "WKWebView+XWebView.h"
 #import "UIWebView+XWebView.h"
 
-@class MSMenuItemData;
-@class EMWebBackView;
-@class EMShareEntity;
-@protocol UIViewControllerRouter;
-@protocol XWebView;
+@class MSMenuItemData,EMWebBackView,EMShareEntity;
+@protocol UIViewControllerRouter,XWebView;
+
 
 
 @interface EMWebViewController : UIViewController<UIWebViewDelegate, WKUIDelegate, WKNavigationDelegate,UIViewControllerRouter, UIViewControllerShareSupport, UIViewControllerSearchSupport>
@@ -35,8 +25,7 @@
     
 }
 
-@property (nonatomic, assign) BOOL synchronizeDocumentTitle;//navbar同步页面document的title，default is yes
-
+@property (nonatomic, assign) BOOL synchronizeDocumentTitle;//是否同步页面document的title，default is yes
 @property (nonatomic, strong, readonly) UIView<XWebView> *webView;
 @property (nonatomic, assign, getter = isCloseButtonShown) BOOL showsCloseButton; // Default YES
 
@@ -62,8 +51,8 @@
 - (void)openRequest:(NSURLRequest *)request;
 - (void)openHTMLString:(NSString *)htmlString baseURL:(NSURL *)baseUrl;
 
-
-+ (Class)webViewClass; // 子类重写
+//暂未发现有什么用
+//+ (Class)webViewClass; // 子类重写
 
 - (void)doRefresh;
 

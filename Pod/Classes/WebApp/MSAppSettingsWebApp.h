@@ -9,20 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <commonLib/MSAppModule.h>
 
-typedef NSDictionary *(^MSWebAppAuthInfo)(void);
-typedef BOOL (^MSUserHasZXGHandler)(NSInteger);
-
 @protocol MSAppSettingsWebApp <CommonAppSettings>
 
-@property (nonatomic, assign) NSInteger productID;
-@property (nonatomic, assign) NSInteger platformID;
-@property (nonatomic, assign) NSInteger vendorID;
+//@property (nonatomic, strong) NSString *theme;//当前主题标记 多主题app适用
+@property (nonatomic, strong) NSArray *supportsURLSchemes;//是否支持应用间跳转
 
-@property (nonatomic, strong) NSString *theme;
-@property (nonatomic, strong) NSArray *supportsURLSchemes;
-@property (nonatomic, strong, readonly) NSString *mainURLScheme;
-
-@property (nonatomic,  copy) MSWebAppAuthInfo webAppAuthInfo;
-@property (nonatomic,  copy) MSUserHasZXGHandler userHasZXGHandler;
 
 @end

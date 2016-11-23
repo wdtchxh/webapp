@@ -37,6 +37,7 @@ PODS:
     - WeiboSDK (~> 3.0)
   - JLRoutes (2.0)
   - JSONModel (1.7.0)
+  - Masonry (1.0.2)
   - MSAppModuleWebApp (0.2.3):
     - MSAppModuleWebApp/WebBridgeCore (= 0.2.3)
     - MSAppModuleWebApp/WebViewController (= 0.2.3)
@@ -44,6 +45,7 @@ PODS:
     - WebViewJavascriptBridge
   - MSAppModuleWebApp/WebViewController (0.2.3):
     - EMSocialKit
+    - Masonry
     - MSAppModuleWebApp/WebBridgeCore
     - SDWebImage
   - PINCache (2.3)
@@ -69,18 +71,19 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   commonLib:
-    :commit: a959fd6b961cbabd033d8d151ab46ccdd3ddc2ff
+    :commit: 4012d19ac5c031be0848471d05a8337ec729ac48
     :git: https://github.com/yanghl/commonLib.git
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   CocoaLumberjack: c823149bccc5519a9447aeb433be7b1212a7d6a5
-  commonLib: 2e7f3e2f3f0ab757fd1cf4582b9c8e66bf17dab4
+  commonLib: 318cdbcbb0c7c6d3237701cb03c5ca03cf13db96
   DXYWeChatSDK: 6a23dbf67a4545bfc80e3e18f9b5cf0c98699576
   EMSocialKit: 346b5322f8b3c3a73305e6bbf7a7c3a8d51bde6e
   JLRoutes: 0bead23690bafa726e1528aa6459a56c9b81cb5e
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
-  MSAppModuleWebApp: 961c964bc8e4d593ac5c371ea80a16bdd25f7121
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  MSAppModuleWebApp: b01020836348d743d64d3254fcf9209f645241f6
   PINCache: ce36ed282031b92fc7733ffe831f474ff80fddc2
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   TencentOpenApiSDK: a0d7716edd6eb438d65828168e8e5137301b436d

@@ -30,23 +30,16 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '7.0'
   s.requires_arc = true
 
-
   s.subspec  'WebViewController' do |ss|
     ss.source_files = 'Pod/Classes/**/*'
     ss.resource     = 'Pod/Assets/**/*.js', 'Pod/Assets/**/*.png'
-
-    #ss.dependency 'MSAppModuleKit'
     ss.dependency 'EMSocialKit'
-    #ss.dependency 'EMSpeed/UIKit/UIKitCollections'
-    #ss.dependency 'EMSpeed/UIKit/FontAwesome+iOS'
     ss.dependency 'SDWebImage'
+    ss.dependency 'Masonry'
     ss.dependency 'MSAppModuleWebApp/WebBridgeCore'
-
   end
 
-
   s.subspec 'WebBridgeCore' do |ss|
-    #ss.source_files = 'Pod/Classes/WebBridgeCore/**/*'
     ss.frameworks = 'UIKit', 'Foundation', 'JavaScriptCore', 'WebKit'
     ss.dependency 'WebViewJavascriptBridge'
 

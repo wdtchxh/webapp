@@ -9,7 +9,6 @@
 #import "UIWebView+JSExtend.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "MSAppSettingsWebApp.h"
-#import "MSWebAppInfo.h"
 #import "NSDictionary+JSONString.h"
 #import <commonLib/MSAppModuleController.h>
 #import <commonLib/CommonAppSettings.h>
@@ -43,14 +42,13 @@
     id<MSAppSettingsWebApp> settings = (id<MSAppSettingsWebApp>)[CommonAppSettings appSettings];
 
 #if 1
-//    // TODO isZXG
-//    BOOL (^IsZxg)(NSString *, NSString *callback) = ^BOOL(NSString *stockId, NSString *callback) {
-//        if (&User_hasStockAtZXG) {
+    
+    BOOL (^IsZxg)(NSString *, NSString *callback) = ^BOOL(NSString *stockId, NSString *callback) {
+        id<MSAppSettingsWebApp>appSettings = (id<MSAppSettingsWebApp>)[CommonAppSettings appSettings];
+        
+//        if (appSettings.userHasZXGHandler) {
 //            NSInteger goodsId = [stockId integerValue];
-//            BOOL isZXG = User_hasStockAtZXG(goodsId);
-//
-//            id<MSAppSettingsWebApp>appSettings = (id<MSAppSettingsWebApp>)[MSAppSettings appSettings];
-//            BOOL isZXG = appSettings.userHasZXG(goodsId);
+//            BOOL isZXG = appSettings.userHasZXGHandler(goodsId);
 //            
 //            NSString* string = [NSString stringWithFormat:@"%@(%d);",callback,isZXG];
 //            [weakSelf stringByEvaluatingJavaScriptFromString:string];
@@ -58,31 +56,17 @@
 //        } else {
 //            return NO;
 //        }
+        return YES;
+    };
+
+    
+//    [goods setObject:IsZxg forKeyedSubscript:@"isZxg"];
+//
+//    //
+//    NSString *(^getAppInfo)() = ^NSString * () {        
+//        return [[MSWebAppInfo getWebAppInfoWithSettings:settings] jsonString];
 //    };
-    
-    BOOL (^IsZxg)(NSString *, NSString *callback) = ^BOOL(NSString *stockId, NSString *callback) {
-        id<MSAppSettingsWebApp>appSettings = (id<MSAppSettingsWebApp>)[CommonAppSettings appSettings];
-        
-        if (appSettings.userHasZXGHandler) {
-            NSInteger goodsId = [stockId integerValue];
-            BOOL isZXG = appSettings.userHasZXGHandler(goodsId);
-            
-            NSString* string = [NSString stringWithFormat:@"%@(%d);",callback,isZXG];
-            [weakSelf stringByEvaluatingJavaScriptFromString:string];
-            return isZXG;
-        } else {
-            return NO;
-        }
-    };
-
-    
-    [goods setObject:IsZxg forKeyedSubscript:@"isZxg"];
-
-    //
-    NSString *(^getAppInfo)() = ^NSString * () {        
-        return [[MSWebAppInfo getWebAppInfoWithSettings:settings] jsonString];
-    };
-    [goods setObject:getAppInfo forKeyedSubscript:@"getAppInfo"];
+//    [goods setObject:getAppInfo forKeyedSubscript:@"getAppInfo"];
 #endif
     
 }

@@ -7,7 +7,7 @@
 //
 
 #import "EMWebErrorView.h"
-//#import <Masonry/Masonry.h>
+#import <Masonry/Masonry.h>
 
 @interface EMWebErrorView ()
 
@@ -23,9 +23,8 @@
     if (self = [super initWithFrame:frame]) {
         self.imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"web_icon_logo"]];
         [self addSubview:self.imageView];
-
-        //UIColor *textColor = [UIColor colorWithHexString:@"#8e8e8e"];
-        UIColor *textColor = [UIColor redColor];
+        
+        UIColor *textColor = [UIColor blackColor];
         UIFont *textFont = [UIFont systemFontOfSize:12];
 
         self.titleLabel = [[UILabel alloc] initWithFrame:self.bounds];
@@ -57,25 +56,22 @@
     __weak __typeof(self) superView = self;
 
     CGSize imageSize = self.imageView.frame.size;
-//    [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.size.mas_equalTo(imageSize);
-//        make.center.mas_equalTo(superView).centerOffset(CGPointMake(0, -15));
-//    }];
-//
-//    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(superView.imageView.mas_bottom).with.offset(7);
-//        make.height.mas_equalTo(16);
-//        make.left.and.right.equalTo(superView);
-//    }];
-//
-//
-//    [self.subtitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(superView.titleLabel.mas_bottom).with.offset(1);
-//        make.height.mas_equalTo(16);
-//        make.left.and.right.equalTo(superView);
-//    }];
+    [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(imageSize);
+        make.center.mas_equalTo(superView).centerOffset(CGPointMake(0, -15));
+    }];
 
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(superView.imageView.mas_bottom).with.offset(7);
+        make.height.mas_equalTo(16);
+        make.left.and.right.equalTo(superView);
+    }];
 
+    [self.subtitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(superView.titleLabel.mas_bottom).with.offset(1);
+        make.height.mas_equalTo(16);
+        make.left.and.right.equalTo(superView);
+    }];
 }
 
 - (void)tapAction:(UITapGestureRecognizer *)tap {

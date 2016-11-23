@@ -24,7 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 // 映射到delegate
 - (id)UIDelegate;
 - (void)setUIDelegate:(nullable id)UIDelegate;
-// -[UIWebView request].mainDocumentURL
 - (NSURL *)URL;
 
 // UIWebView的completionHandler的error永远为空, 成功的结果是执行-stringByEvaluatingJavaScriptFromString的字符串返回

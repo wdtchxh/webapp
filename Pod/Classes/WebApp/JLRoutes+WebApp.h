@@ -11,6 +11,5 @@
 @interface JLRoutes (WebApp)
 
 - (void)registerRoutesForWebApp;
-- (void)unregisterRoutesForWebApp;
 
 @end

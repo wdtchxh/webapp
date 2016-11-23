@@ -7,7 +7,7 @@
 //
 
 #import "EMWebBackView.h"
-//#import <FontAwesome.h>
+#import <commonLib/FontAwesome.h>
 
 @implementation EMWebBackView
 
@@ -36,9 +36,6 @@
         if (nil == _closeButton)
         {
             UIColor *titleColor = [UIColor lightGrayColor];
-//            if (!titleColor) {
-//                titleColor = [UIColor lightGrayColor];
-//            }
             _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
             [_closeButton setTitleColor:titleColor forState:UIControlStateNormal];
             [_closeButton setTitle:@"关闭" forState:UIControlStateNormal];
@@ -104,19 +101,7 @@
 }
 
 - (UIImage *)backImage {
-    UIColor *titleColor = [UIColor lightGrayColor];
-//    if (!titleColor) {
-//        titleColor = [UIColor lightGrayColor];
-//    }
-
-//    UIImage *image = [UIImage imageWithIcon:@"em-icon-back"
-//                            backgroundColor:[UIColor clearColor]
-//                                  iconColor:titleColor
-//                                  iconScale:1//NIScreenScale()
-//                                    andSize:CGSizeMake(23, 23)];
-    NSLog(@"EMWebBackView.m---- backImage");
-    UIImage *image = [UIImage imageNamed:@"em-icon-back"];
-    return image;
+    return [UIImage imageWithIcon:@"em-icon-back" backgroundColor:[UIColor clearColor] iconColor:[UIColor lightGrayColor] iconScale:1 andSize:CGSizeMake(23, 23)];
 }
 
 - (void)goBack
@@ -125,7 +110,6 @@
     {
         _closeButton.hidden = NO;
     }
-    
 }
 
 @end

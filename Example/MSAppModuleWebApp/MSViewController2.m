@@ -44,6 +44,7 @@
     //NSURL *url = [[NSBundle mainBundle] URLForResource:@"index" withExtension:@"html"];
     
     NSURL *url =[NSURL URLWithString:@"http://ms.emoney.cn/html/dujia/77/154344.html"];
+    //NSURL *url =[NSURL URLWithString:@"http://www.yummy77.com/"];
     EMWebViewController *webViewController = [[EMWebViewController alloc] initWithURL:url];
     [self.navigationController pushViewController:webViewController animated:YES];
 }
