@@ -18,31 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S6a-Vh-vux">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="OdC-V6-7qR"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7wG-cw-w2u">
-                                <frame key="frameInset" minX="49" minY="290" width="284" height="216"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="27i-sI-0v5">
-                                <frame key="frameInset" minX="105" minY="252" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLO-ef-GeH">
-                                <frame key="frameInset" minX="91" minY="140" width="214" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qcH-32-mNP">
-                                <frame key="frameInset" minX="91" minY="216" width="180" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qcH-32-mNP">
+                                <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="JpC-xE-BoJ"/>
                                 </constraints>
@@ -55,18 +32,11 @@
                         <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="qcH-32-mNP" secondAttribute="trailing" constant="97" id="Kd4-b3-awu"/>
-                            <constraint firstItem="qcH-32-mNP" firstAttribute="top" secondItem="S6a-Vh-vux" secondAttribute="bottom" constant="54" id="VOn-p3-2vD"/>
-                            <constraint firstAttribute="trailing" secondItem="S6a-Vh-vux" secondAttribute="trailing" constant="20" id="a5a-AJ-gig"/>
-                            <constraint firstItem="S6a-Vh-vux" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" constant="105" id="c3Y-S9-Rpe"/>
                             <constraint firstItem="qcH-32-mNP" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" constant="98" id="k8R-ka-pO2"/>
-                            <constraint firstItem="S6a-Vh-vux" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" constant="20" id="pQi-4f-RVo"/>
+                            <constraint firstItem="qcH-32-mNP" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" constant="101" id="rkn-VA-PDq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ViD-mq-kCs"/>
-                    <connections>
-                        <outlet property="testImage" destination="7wG-cw-w2u" id="kpR-Vr-rX0"/>
-                        <outlet property="textField" destination="S6a-Vh-vux" id="0fg-2m-WqG"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tc2-Qw-aMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

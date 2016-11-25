@@ -9,6 +9,5 @@
 @import UIKit;
 
 @interface MSViewController2 : UIViewController
-@property (weak, nonatomic) IBOutlet UIImageView *testImage;
 
 @end

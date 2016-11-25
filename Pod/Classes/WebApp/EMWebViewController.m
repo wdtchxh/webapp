@@ -35,8 +35,6 @@
 
 #import <commonLib/MSAppModuleController.h>
 
-static BOOL kEnableWKWebView = NO;
-
 static NSString *const kNavigaionBarHiddenMetaJS = @"document.getElementsByName('app-navigation-bar-hidden')[0].getAttribute('content')";
 static const BOOL kNavigationBarHidden = YES;
 
@@ -44,19 +42,16 @@ static const BOOL kNavigationBarHidden = YES;
 {
     NSInteger navigationBarStatus;// 储存navigationBar显示状态
     UILongPressGestureRecognizer *_longPress;
-    NSString *_currentURLString;
-    BOOL _isPushBack;
     
 }
 
 @property (nonatomic, strong) UIView *statusBarBackView;
 @property (nonatomic, strong) EMWebBackView *backView; //左上角返回按钮
 @property (nonatomic, strong) EMWebErrorView *errorView; //请求失败提示页面
+@property (nonatomic, strong, readwrite) UIView<XWebView> *webView;
 
 @property (nonatomic, strong) NSURLRequest *loadRequest;  //当前发出去的request对象 失败后可以用来重复发起
 @property (nonatomic, strong) NSURL *loadingURL;
-
-@property (nonatomic, strong, readwrite) UIView<XWebView> *webView;
 
 @property (nonatomic, strong) id<WebViewJavascriptBridgeProtocol>bridge;
 @property (nonatomic, strong) JSBridge *jsBridge;
@@ -89,8 +84,6 @@ static const BOOL kNavigationBarHidden = YES;
     self = [self initWithURL:url];
     
     if (self) {
-        self.eventAttributes = [self eventAttributesFromJLRoutesParams:params];
-        
         NSString *navigationBarHidden = params[@"navigationBarHidden"];
         NSString *navigaionBarHidden = params[@"navigaionBarHidden"]; // 之前的拼写错误
         if (navigationBarHidden.length > 0) {
@@ -164,17 +157,19 @@ static const BOOL kNavigationBarHidden = YES;
     [super viewDidLoad];
     [self setUpWebView];
     
-    _isPushBack = NO;
     
     if (nil != self.loadRequest) {
         [self.webView x_loadRequest:self.loadRequest];
     }
     self.backView.supportClose = [self supportClose];
 }
-
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-}
+// 仅仅实现父类函数调用  故暂时注释
+//- (void)viewDidLayoutSubviews {
+//    [super viewDidLayoutSubviews];
+//}
+//- (void)didReceiveMemoryWarning {
+//    [super didReceiveMemoryWarning];
+//}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -185,15 +180,6 @@ static const BOOL kNavigationBarHidden = YES;
     
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    if (_isPushBack) {
-        [self trackBackFromViewDidAppear];
-        _isPushBack = NO;
-    }
-}
-
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
@@ -202,41 +188,25 @@ static const BOOL kNavigationBarHidden = YES;
     
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    [self endTrackingLastPage];
-    
-    _isPushBack = YES;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
-#pragma mark - WebView
+#pragma mark - Create UIWebView or WKWebView
 - (void)setUpWebView {
     // [[JSBridge sharedBridge] attachToBridge:self.bridge];调用的时机不一样
     // WKWebView通过userContentController 注入脚本
     // UIWebView在获取JSContext的时候注入脚本
     
-    if (NSClassFromString(@"WKWebView") && kEnableWKWebView) {
+    if (NSClassFromString(@"WKWebView")) {
         [WKWebViewJavascriptBridge enableLogging];
         
         WKUserContentController *userContentController = [[WKUserContentController alloc] init];
-        
         WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
         configuration.userContentController = userContentController;
-        
-        // 显示WKWebView
         WKWebView *wkWebView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:configuration];
         wkWebView.UIDelegate = self; // 设置WKUIDelegate代理
         wkWebView.navigationDelegate = self; // 设置WKNavigationDelegate代理
         [self.view addSubview:wkWebView];
-        
-        _webView = (UIView<XWebView> *)wkWebView;
+        _webView = (UIView<XWebView> *)wkWebView;//
         
         [self bridgeWithWebView];
-        
         [self.jsBridge attachToBridge:self.bridge];
         
     } else {
@@ -254,11 +224,9 @@ static const BOOL kNavigationBarHidden = YES;
         [self bridgeWithWebView];
     }
 }
-
+//create bridge and jsBridge
 - (void)bridgeWithWebView {
-    
     if (!self.bridge) {
-        
         if ([_webView isKindOfClass:[WKWebView class]]) {
             self.bridge = [WKWebViewJavascriptBridge bridgeForWebView:(WKWebView *)_webView];
         } else {
@@ -268,7 +236,6 @@ static const BOOL kNavigationBarHidden = YES;
         [self.bridge setWebViewDelegate:self];
         
         self.jsBridge = [JSBridge new];
-        
         self.jsBridge.javaScriptBridge = self.bridge;
         self.jsBridge.viewController = self;
         self.jsBridge.webView = _webView;
@@ -304,7 +271,6 @@ static const BOOL kNavigationBarHidden = YES;
 
 - (void)changeTabbarStatus {
     NSLog(@"emwebviewcontroller  hidden tab");
-    //  [self.rdv_tabBarController setTabBarHidden:YES];
 }
 
 - (void)changeNavigationBarStatusAnimated:(BOOL)animated {
@@ -417,7 +383,6 @@ static const BOOL kNavigationBarHidden = YES;
         [[[url scheme] lowercaseString] hasPrefix:@"file"]
         ) {
         [self showNetworkActivityIndicator:YES];
-        [self beginTrackingEventsWithURL:url];
     }
     
 }
@@ -731,7 +696,6 @@ static const BOOL kNavigationBarHidden = YES;
 }
 
 - (void)doSearch {
-   // [EMClick event:@"web:search" attributes:self.eventAttributes];
     if ([super respondsToSelector:_cmd]) {
         [super doSearch];
     }
@@ -745,10 +709,10 @@ static const BOOL kNavigationBarHidden = YES;
 
 #pragma mark - Share
 - (void)share:(EMShareEntity *)shareEntity {
-    //[EMClick event:@"web:share" attributes:self.eventAttributes];
     NSString *callback = shareEntity.callback;
     
     [[EMSocialSDK sharedSDK] shareEntity:shareEntity rootViewController:self completionHandler:^(NSString *activityType, BOOL completed, NSDictionary *returnedInfo, NSError *activityError) {
+        //分享成功后的回调函数
         EMSocialType socialType = 0;
         NSInteger statusCode = 0;
         
@@ -810,75 +774,13 @@ static const BOOL kNavigationBarHidden = YES;
             }
         } else {
             if (message.length > 0) {
-                NSLog(@"EMWebViewController 829 show BDKNotifyHUD");
-               // [BDKNotifyHUD showNotifHUDWithText:message];
+                
             }
         }
     }];
 }
 
-#pragma mark - EMClick
-// 页面开始的时候统计从`-webViewDidStartLoad`开始
-// 当pop回webviewcontroller的时候`-webViewDidStartLoad`不会调用
-// 这个时候在`-viewDidAppear`里面统计这个page
-- (void)trackBackFromViewDidAppear {
-    if (_currentURLString) {
-        //[EMClick beginLogPageView:@"web"];
-    }
-}
 
-- (void)beginTrackingEventsWithURL:(NSURL *)url {
-    [self endTrackingLastPage];
-    
-    NSString *scheme = url.scheme;
-    NSString *host = url.host;
-    NSString *relativePath = url.relativePath;
-    
-    NSString *urlString = [NSString stringWithFormat:@"%@://%@%@",scheme,host,relativePath];
-
-    _currentURLString = urlString;
-    
-    //[EMClick beginLogPageView:@"web"];
-}
-
-- (void)endTrackingLastPage {
-    
-    if (_currentURLString.length > 0) {
-        __block NSMutableDictionary *atrributes = [NSMutableDictionary dictionary];
-        if (self.eventAttributes) {
-            [atrributes addEntriesFromDictionary:self.eventAttributes];
-        }
-        atrributes[@"url"] = _currentURLString;
-        
-        [self getRemoteTitleWithHandler:^(NSString *title) {
-            if (title && title.length) {
-                atrributes[@"title"] = title;
-            }
-           // [EMClick endLogPageView:@"web" attributes:atrributes];
-        }];
-    }
-}
-
-- (NSDictionary *)eventAttributesFromJLRoutesParams:(NSDictionary *)params {
-    NSMutableDictionary *eventsAtrributes = [params mutableCopy];
-    
-    [eventsAtrributes removeObjectForKey:kJLRoutePatternKey];
-    [eventsAtrributes removeObjectForKey:kJLRouteURLKey];
-    [eventsAtrributes removeObjectForKey:kJLRouteNamespaceKey];
-    [eventsAtrributes removeObjectForKey:kJLRouteWildcardComponentsKey];
-    [eventsAtrributes removeObjectForKey:kJLRoutesGlobalNamespaceKey];
-    
-    
-//    [eventsAtrributes removeObjectForKey:JLRoutePatternKey];
-//    [eventsAtrributes removeObjectForKey:JLRouteURLKey];
-//    [eventsAtrributes removeObjectForKey:JLRouteSchemeKey];
-//    [eventsAtrributes removeObjectForKey:JLRouteWildcardComponentsKey];
-//    [eventsAtrributes removeObjectForKey:JLRoutesGlobalRoutesScheme];
-//    
-    
-    
-    return eventsAtrributes;
-}
 
 @end
 

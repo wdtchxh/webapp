@@ -92,7 +92,7 @@ static JSBridge *JSCurrentBridgeInstance = nil;
     }
     return nil;
 }
-
+//WKWebView 对象 --
 - (void)attachToBridge:(id <WebViewJavascriptBridgeProtocol>)javascriptBridge {
     [_modules removeAllObjects];
     
@@ -103,7 +103,6 @@ static JSBridge *JSCurrentBridgeInstance = nil;
         id <JSBridgeModule> module = [c new];
         [_modules addObject:module];
     }
-    
     // sort
     [_modules sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
         id <JSBridgeModule> module1 = obj1;

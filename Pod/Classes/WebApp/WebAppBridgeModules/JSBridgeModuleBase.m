@@ -243,14 +243,18 @@ JS_EXPORT_MODULE();
 
 - (void)registerRouteWithBridge:(JSBridge *)bridge {
     void (^handler)(id, WVJBResponseCallback) = ^(id data, WVJBResponseCallback responseCallback){
+        NSURL *url =[NSURL URLWithString:@"web?url=http://ms.emoney.cn/html/dujia/77/154344.html"];
         NSDictionary *parameters = (NSDictionary *)data;
-        NSString *path = parameters[@"path"];
-        if (path) {
-            [JLRoutes routeURL:[NSURL URLWithString:path] withParameters:parameters];
-            responseCallback(@{JSResponseErrorCodeKey:@(JSResponseErrorCodeSuccess)});
-        } else {
-            responseCallback(@{JSResponseErrorCodeKey:@(JSResponseErrorCodeFailed)});
-        }
+        [JLRoutes routeURL:url];
+
+        //        NSDictionary *parameters = (NSDictionary *)data;
+//        NSString *path = parameters[@"path"];
+//        if (path) {
+//            [JLRoutes routeURL:[NSURL URLWithString:path] withParameters:parameters];
+//            responseCallback(@{JSResponseErrorCodeKey:@(JSResponseErrorCodeSuccess)});
+//        } else {
+//            responseCallback(@{JSResponseErrorCodeKey:@(JSResponseErrorCodeFailed)});
+//        }
     };
     
     [self registerHandler:@"route" handler:handler];

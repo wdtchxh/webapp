@@ -11,24 +11,46 @@
 #import <JLRoutes/JLRoutes.h>
 #import <UIViewController+Routes.h>
 #import "EMWebViewController.h"
-#import "JLRoutes+WebApp.h"
+#import "MSActiveControllerFinder.h"
+//#import "XWebView.h"
 
 @implementation MSAppModuleWebApp
 
 - (void)moduleDidLoad:(id<MSAppSettingsWebApp>)info {
     [super moduleDidLoad:info];
-
-
 }
 
 
 
 - (void)moduleRegisterRoutes:(JLRoutes *)route {
-    [route registerRoutesForWebApp];
+    [self registerWeb];
+    [self registerGoBack];
 }
 
 - (void)moduleUnregisterRoutes:(JLRoutes *)route {
-//    [route registerRoutesForWebApp];
 }
+
+
+- (void)registerWeb {
+    [JLRoutes addRoute:@"web" handler:^BOOL(NSDictionary *parameters) {
+        UINavigationController *navController = [MSActiveControllerFinder finder].activeNavigationController();
+        [MSActiveControllerFinder finder].resetStatus();
+        [navController pushViewControllerClass:NSClassFromString(@"EMWebViewController") params:parameters];
+        return YES;
+    }];
+}
+
+- (void)registerGoBack {
+    BOOL (^completion)(NSDictionary *) = ^BOOL(NSDictionary *parameters) {
+        EMWebViewController *webViewController = (EMWebViewController *)[MSActiveControllerFinder finder].activeTopController();
+        if ([webViewController respondsToSelector:@selector(webView)]) {
+            [[webViewController webView] x_goBack];
+        }
+        return YES;
+    };
+    
+    [JLRoutes addRoutes:@[@"goBack", @"goback"] handler:completion];
+}
+
 
 @end

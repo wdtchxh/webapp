@@ -10,36 +10,28 @@
             </style>
         
         <script>
-            alert(1);
+            
+            //alert(1);
             window.onerror = function(err) {
                 console.log('window.onerror: ' + err)
             }
         
-            document.addEventListener("DOMContentLoaded",function() {
-                                      goods.ready(function(bridge) {
-<!--                                            alert("goods.ready in DOMContentLoaded");-->
-                                    });
-                                      
-                                      alert(goods.getAppInfo());
-                                  });
+        document.addEventListener("DOMContentLoaded",function() {
+              goods.ready(function(bridge) { goods.canOpenURL2();  });
+        });
+                                  
+        //goods.ready(function(bridge) {alert(goods.canOpenURL2());});
+                                              
+                                              
+                                              
+                                              
 
-            goods.ready(function(bridge) {
-<!--                alert("goods.ready");-->
-            });
-            
-            console.log(goods.getAppInfo());
 
-            goods.getAppInfo2(null, function(a){
-                console.log(a);
-<!--                alert(a);-->
-            });
-                    
-            </script>
+        </script>
 
 </head><body>
     <h1>WebViewJavascriptBridge Demo</h1>
     <div id='buttons'></div> <div id='log'></div>
-    INDEX 22222
-    <a href="index.html">index.html</a>
+    <a href='javascript:goods.showgoods(2006276)'>index.html</a>
 
 </body></html>

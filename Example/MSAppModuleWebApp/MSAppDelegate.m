@@ -23,4 +23,9 @@
     return YES;
 }
 
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    [appModuleManager openURL:url sourceApplication:sourceApplication annotation:annotation navigation:nil];
+    
+    return YES;
+}
 @end

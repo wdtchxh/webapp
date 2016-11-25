@@ -9,10 +9,9 @@
 #import "MSViewController2.h"
 #import "EMWebViewController.h"
 #import <commonLib/MSCoreFileManager.h>
+#import <commonLib/BDKNotifyHUD.h>
+#import <JLRoutes/JLRoutes.h>
 @interface MSViewController2 ()
-
-@property (nonatomic, assign) IBOutlet UITextField *textField;
-
 @end
 
 @implementation MSViewController2
@@ -35,18 +34,22 @@
     [super viewDidLoad];
     NSLog(@"viewDidLoad");
     
-    NSString *path = MSPathForBundleResource([NSBundle mainBundle], @"");
+    //NSString *path = MSPathForBundleResource([NSBundle mainBundle], @"");
     
 }
 
 - (IBAction)open:(id)sender {
     
-    //NSURL *url = [[NSBundle mainBundle] URLForResource:@"index" withExtension:@"html"];
+   // [BDKNotifyHUD showNotifHUDWithText:@"aadsfasdfasd"];
     
-    NSURL *url =[NSURL URLWithString:@"http://ms.emoney.cn/html/dujia/77/154344.html"];
+   // NSURL *url = [[NSBundle mainBundle] URLForResource:@"index" withExtension:@"html"];
+    
+    NSURL *url =[NSURL URLWithString:@"web?url=http://ms.emoney.cn/html/dujia/77/154344.html"];
     //NSURL *url =[NSURL URLWithString:@"http://www.yummy77.com/"];
-    EMWebViewController *webViewController = [[EMWebViewController alloc] initWithURL:url];
-    [self.navigationController pushViewController:webViewController animated:YES];
+//    EMWebViewController *webViewController = [[EMWebViewController alloc] initWithURL:url];
+//    [self.navigationController pushViewController:webViewController animated:YES];
+    //[JLRoutes routeURL:[NSURL URLWithString:goToWeb([cm.item.htmlUrl URLEncodedString])]];
+    [JLRoutes routeURL:url];
 }
 
 @end

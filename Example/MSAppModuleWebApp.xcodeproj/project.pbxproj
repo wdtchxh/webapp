@@ -162,8 +162,8 @@
 			isa = PBXGroup;
 			children = (
 				94BE18F81CD2F99D0067E818 /* AppSettings */,
-				94BE18DD1CD1EBB60067E818 /* 2.html */,
 				94BE18DB1CD1EAC10067E818 /* index.html */,
+				94BE18DD1CD1EBB60067E818 /* 2.html */,
 				9BF9CA6A1DD47B3800215061 /* aa.png */,
 				9BF9CA681DD478F900215061 /* zzz.jpeg */,
 				6003F59C195388D20070C39A /* MSAppDelegate.h */,
@@ -283,6 +283,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Ryan Wang";
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = 7RHB83697H;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -555,6 +558,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = 7RHB83697H;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MSAppModuleWebApp/MSAppModuleWebApp-Prefix.pch";
 				INFOPLIST_FILE = "MSAppModuleWebApp/MSAppModuleWebApp-Info.plist";
@@ -575,6 +580,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = 7RHB83697H;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MSAppModuleWebApp/MSAppModuleWebApp-Prefix.pch";
 				INFOPLIST_FILE = "MSAppModuleWebApp/MSAppModuleWebApp-Info.plist";
