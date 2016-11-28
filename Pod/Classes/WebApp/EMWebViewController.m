@@ -34,15 +34,13 @@
 #import "EMWebErrorView.h"
 
 #import <commonLib/MSAppModuleController.h>
-
+//-----//
 static NSString *const kNavigaionBarHiddenMetaJS = @"document.getElementsByName('app-navigation-bar-hidden')[0].getAttribute('content')";
 static const BOOL kNavigationBarHidden = YES;
 
 @interface EMWebViewController ()
 {
     NSInteger navigationBarStatus;// 储存navigationBar显示状态
-    UILongPressGestureRecognizer *_longPress;
-    
 }
 
 @property (nonatomic, strong) UIView *statusBarBackView;
@@ -59,11 +57,6 @@ static const BOOL kNavigationBarHidden = YES;
 @end
 
 @implementation EMWebViewController
-
-//暂未发现有什么用
-//+ (Class)webViewClass {
-//    return [UIWebView class];
-//}
 
 - (void)dealloc {
     [self.jsBridge reset];
@@ -85,11 +78,8 @@ static const BOOL kNavigationBarHidden = YES;
     
     if (self) {
         NSString *navigationBarHidden = params[@"navigationBarHidden"];
-        NSString *navigaionBarHidden = params[@"navigaionBarHidden"]; // 之前的拼写错误
         if (navigationBarHidden.length > 0) {
             navigationBarStatus = [navigationBarHidden integerValue];
-        } else if (navigaionBarHidden.length > 0) {
-            navigationBarStatus = [navigaionBarHidden integerValue];
         } else {
             navigationBarStatus = 0;
         }
@@ -163,20 +153,12 @@ static const BOOL kNavigationBarHidden = YES;
     }
     self.backView.supportClose = [self supportClose];
 }
-// 仅仅实现父类函数调用  故暂时注释
-//- (void)viewDidLayoutSubviews {
-//    [super viewDidLayoutSubviews];
-//}
-//- (void)didReceiveMemoryWarning {
-//    [super didReceiveMemoryWarning];
-//}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self changeTabbarStatus];
     [self changeNavigationBarStatusAnimated:animated];
-    [self changeNavigaiotnBarColor];
+
     
 }
 
@@ -262,25 +244,15 @@ static const BOOL kNavigationBarHidden = YES;
     self.errorView.hidden = YES;
 }
 
-#pragma mark - Override
-/**是否需要退出当前页面
- */
+#pragma mark - Override   是否显示返回按钮
 - (BOOL)supportClose {
     return ([self.navigationController.viewControllers count] > 1 || self.presentingViewController) ? YES : NO;
-}
-
-- (void)changeTabbarStatus {
-    NSLog(@"emwebviewcontroller  hidden tab");
 }
 
 - (void)changeNavigationBarStatusAnimated:(BOOL)animated {
     if (navigationBarStatus != -1) {
         [self.navigationController setNavigationBarHidden:navigationBarStatus animated:NO];
     }
-}
-
-- (void)changeNavigaiotnBarColor {
-    
 }
 
 - (void)reloadTitle {        //提取页面的标题作为当前controller的标题
@@ -309,8 +281,6 @@ static const BOOL kNavigationBarHidden = YES;
         } else {
             self.statusBarBackView.frame = topBarRect;
         }
-        
-        //self.statusBarBackView.backgroundColor = [UIColor colorForKey:@"common_webStatusBarColor"];
         [self.view addSubview:self.statusBarBackView];
     } else {
         [self.statusBarBackView removeFromSuperview];
@@ -402,12 +372,6 @@ static const BOOL kNavigationBarHidden = YES;
     self.backView.showGoBack = self.webView.canGoBack;
     [self updateNavigationBarByMeta];
     
-    if (!_longPress) {
-        _longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(coverWebviewAction:)];
-        _longPress.minimumPressDuration = 0.4;
-        _longPress.numberOfTouchesRequired = 1;
-        [webView.scrollView addGestureRecognizer:_longPress];
-    }
 }
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
@@ -421,6 +385,7 @@ static const BOOL kNavigationBarHidden = YES;
     [self reloadTitle];
 }
 
+#pragma mark WKUIDelegate
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示"
                                                                              message:message
@@ -432,13 +397,9 @@ static const BOOL kNavigationBarHidden = YES;
                                                       }]];
     [self presentViewController:alertController animated:YES completion:^{}];
 }
-
+#pragma mark WKUIDelegate
 - (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL result))completionHandler {
     completionHandler(YES);
-}
-
-- (void)coverWebviewAction:(UIGestureRecognizer *)gesture {
-    
 }
 
 #pragma mark -

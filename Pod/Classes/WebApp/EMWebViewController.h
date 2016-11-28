@@ -28,34 +28,22 @@
 @property (nonatomic, assign) BOOL synchronizeDocumentTitle;//是否同步页面document的title，default is yes
 @property (nonatomic, strong, readonly) UIView<XWebView> *webView;
 @property (nonatomic, assign, getter = isCloseButtonShown) BOOL showsCloseButton; // Default YES
-
 // Share Supports
 @property (nonatomic, strong) EMShareEntity *shareEntity;
 @property (nonatomic, assign) BOOL isShareItemEnabled;
-
 // Search Supports
 @property (nonatomic, assign) BOOL isSearchItemEnabled;
-
 @property (nonatomic, strong) NSArray <MSMenuItemData *> *menuItems;
-
 // 通过JLRoutes跳转的时候 可附加eventAttributes 会传入统计中去
 @property (nonatomic, strong) NSDictionary *eventAttributes;
 
-
 - (instancetype)initWithURL:(NSURL *)URL;
 - (instancetype)initWithRequest:(NSURLRequest *)request;
-
 - (NSURL *)URL;
-
 - (void)openURL:(NSURL *)URL;
 - (void)openRequest:(NSURLRequest *)request;
 - (void)openHTMLString:(NSString *)htmlString baseURL:(NSURL *)baseUrl;
-
-//暂未发现有什么用
-//+ (Class)webViewClass; // 子类重写
-
 - (void)doRefresh;
-
 - (void)share:(EMShareEntity *)shareEntity;
 
 @end
