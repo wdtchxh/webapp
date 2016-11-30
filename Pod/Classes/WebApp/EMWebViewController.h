@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "UIViewController+Routes.h"
-#import "UIViewController+EMShare.h"
-#import "UIViewController+SearchStock.h"
 
 #import "XWebView.h"
 #import "WKWebView+XWebView.h"
@@ -20,7 +18,7 @@
 
 
 
-@interface EMWebViewController : UIViewController<UIWebViewDelegate, WKUIDelegate, WKNavigationDelegate,UIViewControllerRouter, UIViewControllerShareSupport, UIViewControllerSearchSupport>
+@interface EMWebViewController : UIViewController<UIWebViewDelegate, WKUIDelegate, WKNavigationDelegate,UIViewControllerRouter>
 {
     
 }

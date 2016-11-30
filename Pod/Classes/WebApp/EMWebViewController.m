@@ -658,7 +658,7 @@ static const BOOL kNavigationBarHidden = YES;
 
 - (void)doSearch {
     if ([super respondsToSelector:_cmd]) {
-        [super doSearch];
+       // [super doSearch];
     }
 }
 
