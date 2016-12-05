@@ -67,11 +67,11 @@ EXTERNAL SOURCES:
   commonLib:
     :git: https://github.com/yanghl/commonLib.git
   MSAppModuleWebApp:
-    :path: ../
+    :path: "../"
 
 CHECKOUT OPTIONS:
   commonLib:
-    :commit: 4012d19ac5c031be0848471d05a8337ec729ac48
+    :commit: 884f8ae3453188792bf54b983031e327d66c6bb3
     :git: https://github.com/yanghl/commonLib.git
 
 SPEC CHECKSUMS:
@@ -85,7 +85,7 @@ SPEC CHECKSUMS:
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MSAppModuleWebApp: b01020836348d743d64d3254fcf9209f645241f6
   PINCache: ce36ed282031b92fc7733ffe831f474ff80fddc2
-  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SDWebImage: '098e97e6176540799c27e804c96653ee0833d13c'
   TencentOpenApiSDK: a0d7716edd6eb438d65828168e8e5137301b436d
   UIImage-ResizeMagick@NoWarnings: 7d1a61c23404ac1daef0d5397b1a1d7182addd60
   WebViewJavascriptBridge: a4d502315f1b8d9a51cd6a9174147ed567ec3bc5
