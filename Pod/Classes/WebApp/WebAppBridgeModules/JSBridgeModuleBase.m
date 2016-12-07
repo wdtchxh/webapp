@@ -16,6 +16,8 @@
 #import "MSCustomMenuItem.h"
 #import "EMShareEntity+Parameters.h"
 #import <commonLib/CommonAppSettings.h>
+#import <commonLib/BDKNotifyHUD.h>
+
 @implementation JSBridgeModuleBase
 
 @synthesize bridge = _bridge;
@@ -32,19 +34,19 @@ JS_EXPORT_MODULE();
 
 - (void)attachToJSBridge:(JSBridge *)bridge {
 
-    [self registerShowMenuItemsWithBridge:bridge];
-
-    [self registerLogWithBridge:bridge];
-    
-    [self registerGetAppInfoWithBridge:bridge];
     [self registerCopyWithBridge:bridge];
-    [self registerCanOpenURL2WithBridge:bridge];
+    [self registerCanOpenURLWithBridge:bridge];
+    [self registerShowMenuItemsWithBridge:bridge];
     [self registerShowNotifyWithBridge:bridge];
+    //导航控制器pop操作
     [self registerPopWithBridge:bridge];
+    //浏览器的goback操作
     [self registerGoBackWithBridge:bridge];
-
-    [self registerShareConfigWithBridge:bridge];
+    //直接分享
     [self registerShareWithBridge:bridge];
+    //创建一个分享对象  稍后用于分享 比如右上角的分享按钮
+    [self registerShareConfigWithBridge:bridge];
+    //右上角的搜索按钮 启用禁用设置
     [self registerSearchToggleWithBridge:bridge];
 
     [self registerOpenPageWithBridge:bridge];
@@ -82,25 +84,10 @@ JS_EXPORT_MODULE();
     }];
 }
 
-- (void)registerLogWithBridge:(JSBridge *)bridge {
-    [self registerHandler:@"log" handler:^(id data, WVJBResponseCallback responseCallback) {
-        NSLog(@"Log: %@", data);
-    }];
-}
-
-- (void)registerGetAppInfoWithBridge:(JSBridge *)bridge {
-    [self registerHandler:@"getAppInfo2" handler:^(id data, WVJBResponseCallback responseCallback) {
-        id<MSAppSettingsWebApp> settings = (id<MSAppSettingsWebApp>)[CommonAppSettings appSettings];
-        //NSDictionary *info = [MSWebAppInfo getWebAppInfoWithSettings:settings];
-        responseCallback(@{JSResponseErrorCodeKey:@(JSResponseErrorCodeSuccess),
-                           JSResponseErrorDataKey:@{}});//
-                           //JSResponseErrorDataKey:info});//
-    }];
-}
-
-- (void)registerCanOpenURL2WithBridge:(JSBridge *)bridge {
-    [self registerHandler:@"canOpenURL2" handler:^(id data, WVJBResponseCallback responseCallback) {
+- (void)registerCanOpenURLWithBridge:(JSBridge *)bridge {
+    [self registerHandler:@"canOpenURL" handler:^(id data, WVJBResponseCallback responseCallback) {
         NSDictionary *parameters = (NSDictionary *)data;
+        // @params: {appurl:"emstock://"}
         NSString *url = parameters[@"appurl"];
         
         BOOL canopen = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:url]];
@@ -112,8 +99,10 @@ JS_EXPORT_MODULE();
 
 - (void)registerCopyWithBridge:(JSBridge *)bridge {
     [self registerHandler:@"copy" handler:^(id data, WVJBResponseCallback responseCallback) {
-        NSString *text = data[@"text"];
+        NSDictionary *parameters = (NSDictionary *)data;
+        NSString *text = parameters[@"text"];
         UIPasteboard *p = [UIPasteboard generalPasteboard];
+        
         [p setString:text];
         responseCallback(@{JSResponseErrorCodeKey:@(JSResponseErrorCodeSuccess)});
     }];
@@ -123,7 +112,7 @@ JS_EXPORT_MODULE();
     __weak EMWebViewController *webViewController = (EMWebViewController *)bridge.viewController;
     
     [self registerHandler:@"share" handler:^(id data, WVJBResponseCallback responseCallback) {
-        NSLog(@"share called: %@", data);
+
         NSDictionary *parameters = (NSDictionary *)data;
         
         if ([webViewController respondsToSelector:@selector(share:)]) {
@@ -138,7 +127,7 @@ JS_EXPORT_MODULE();
 - (void)registerShareConfigWithBridge:(JSBridge *)bridge {
     __weak EMWebViewController *webViewController = (EMWebViewController *)bridge.viewController;
     [self registerHandler:@"shareConfig" handler:^(id data, WVJBResponseCallback responseCallback) {
-        NSLog(@"shareConfig called: %@", data);
+
         NSDictionary *parameters = (NSDictionary *)data;
         if ([webViewController respondsToSelector:@selector(setIsShareItemEnabled:)]) {
             BOOL showsShare = [parameters[@"shareToggle"] boolValue];
@@ -159,8 +148,7 @@ JS_EXPORT_MODULE();
 - (void)registerShowNotifyWithBridge:(JSBridge *)bridge {
     [self registerHandler:@"showNotify" handler:^(id data, WVJBResponseCallback responseCallback) {
         NSString *message = data[@"message"];
-        NSLog(@"JSBridgeModuleBase.m 163 show BDKNotifyHUD");
-        //[BDKNotifyHUD showNotifHUDWithText:message];
+        [BDKNotifyHUD showNotifHUDWithText:message];
         responseCallback(@{JSResponseErrorCodeKey:@(JSResponseErrorCodeSuccess)});
     }];
 }
@@ -182,7 +170,6 @@ JS_EXPORT_MODULE();
     
     
     [self registerHandler:@"close" handler:handler];
-    [self registerHandler:@"back" handler:handler];
     
 }
 
@@ -198,7 +185,6 @@ JS_EXPORT_MODULE();
     };
     
     [self registerHandler:@"goback" handler:handler];
-    [self registerHandler:@"goBack" handler:handler];
     
 }
 
@@ -218,7 +204,6 @@ JS_EXPORT_MODULE();
 }
 
 #pragma mark - JLRoutes跳转
-// page
 - (void)registerOpenPageWithBridge:(JSBridge *)bridge {
     void (^handler)(id, WVJBResponseCallback) = ^(id data, WVJBResponseCallback responseCallback){
         NSDictionary *parameters = (NSDictionary *)data;

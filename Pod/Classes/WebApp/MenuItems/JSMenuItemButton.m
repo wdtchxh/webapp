@@ -26,10 +26,6 @@
         __weak __typeof(self) weakSelf = self;
         
         UIColor *color = self.tintColor;
-        if (_menuItem.tintColor) {
-           // color = [UIColor colorWithHexString:_menuItem.tintColor];
-        }
-        
         NSString *icon = [menuItem icon];
         
         if ([icon length] > 0) {
@@ -53,9 +49,6 @@
 }
 
 - (void)_setImage:(UIImage *)image withTintColor:(UIColor *)color {
-//    UIImage *newImage = [image rt_tintedImageWithColor:color];
-//    UIImage *newImage2 = [self resizeImage:newImage newSize:CGSizeMake(24, 24)];
-    NSLog(@"JSMenuItemButton.m  ---   _setImage  有改动");
     UIImage *newImage2 = [self resizeImage:image newSize:CGSizeMake(24, 24)];
     [self setImage:newImage2 forState:UIControlStateNormal];
     [self sizeToFit];

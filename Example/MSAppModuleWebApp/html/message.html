@@ -1,0 +1,24 @@
+<!doctype html>
+<html><head>
+    <title>我是来自HTML的Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <script>
+        document.addEventListener("DOMContentLoaded",function() {
+                                  goods.ready(function(bridge) {
+                                              goods.showNotify({"message":"来自网页的消息"},function(param){
+                                                                for (var i in param) {
+                                                                    if(param[i]==0){
+                                                                    //alert("设置标题成功");
+                                                                    }else{
+                                                                       // alert("设置标题失败");
+                                                                    }
+                                                                }
+                                                                });
+                                              
+                                              });
+                                  });
+        </script>
+</head><body>
+   根据html的title更新vc的title
+</body></html>

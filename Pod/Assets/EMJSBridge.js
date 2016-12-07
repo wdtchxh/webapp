@@ -85,8 +85,8 @@
       prepareWebViewJavascriptBridge(callback);
     },
 
-    goback: function () {
-      GoodsBridge.callHandler("back");
+    goback: function (params,responseCallback) {
+        GoodsBridge.callHandler('goback', params, responseCallback)
     },
 
     openurl: function (url) {
@@ -96,15 +96,12 @@
       GoodsBridge.callHandler('web', params, function (response) { })
     },
 
-    close: function () {
-      GoodsBridge.callHandler('close', null, function (response) { })
+    close: function (params,responseCallback) {
+      GoodsBridge.callHandler('close', params, responseCallback)
     },
 
-    copy: function (text) {
-      var params = {
-        "text": text
-      };
-      GoodsBridge.callHandler('copy', params, function (response) { })
+    copy: function (params,responseCallback) {
+        GoodsBridge.callHandler('copy', params, responseCallback);
     },
 
     openPage: function (pageId) {
@@ -340,10 +337,7 @@
       GoodsBridge.callHandler('goFundMyAsset', null, null);
     },
 
-    showNotify: function (message) {
-      var params = {
-        "message": message
-      };
+    showNotify: function (params) {
       GoodsBridge.callHandler('showNotify', params, null);
     },
 
@@ -378,30 +372,14 @@
         response) { })
     },
 
-    // 2.9.0
     // @params: {appurl:"emstock://"}
-    canOpenURL2: function (params, responseCallback) {
-      GoodsBridge.callHandler('canOpenURL2', params, responseCallback)
+    canOpenURL: function (params, responseCallback) {
+      GoodsBridge.callHandler('canOpenURL', params, responseCallback)
     },
-
-    // 2.9.0+ 改成回调方式
-    getAppInfo2: function (params, responseCallback) {
-      GoodsBridge.callHandler('getAppInfo2', params,
-        responseCallback);
-    },
-
-    // 2.9.0+
     updateTitle: function (params, responseCallback) {
-      GoodsBridge.callHandler('updateTitle', params,
-        responseCallback);
+      GoodsBridge.callHandler('updateTitle', params, responseCallback);
     },
-
-    // 2.9.0+
-    post: function (params, responseCallback) {
-      GoodsBridge.callHandler('post', params,
-        responseCallback);
-    },
-
+ 
     installPlugin: function (plugin) {
       for (var item in plugin) {
         goods[item] = plugin[item];
@@ -411,17 +389,9 @@
 
 } ());
 
+ 
 (function () {
   var ev = document.createEvent("Event");
   ev.initEvent("goodsReady", true, true);
   document.dispatchEvent(ev);
 } ());
-
-window.onload = function () {
-  //炒盘技巧--区分是否有此任务
-  if (typeof (clientGoods) != "undefined" && clientGoods != null &&
-    typeof (clientGoods.initTasks) != "undefined" &&
-    clientGoods.initTasks != null) {
-    clientGoods.initTasks();
-  }
-}

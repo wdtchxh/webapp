@@ -537,42 +537,16 @@ static const BOOL kNavigationBarHidden = YES;
 
 - (void)updateRightItems2 {
     NSMutableArray *items = [NSMutableArray array];
-    
     NSEnumerator <MSMenuItemData *> *e = [_menuItems reverseObjectEnumerator];
     MSMenuItemData *item = nil;
     while (item = [e nextObject]) {
-#if 0
-        if ([item isKindOfClass:[MSShareMenuItem class]]) {
-            MSShareMenuItem *shareItem = (MSShareMenuItem *)item;
-            self.shareEntity = shareItem.shareEntity;
-            if ([self respondsToSelector:@selector(shareItem)]) {
-                [items addObject:[self shareItem]];
-            }
-        } else if ([item isKindOfClass:[MSSearchMenuItem class]]) {
-            if ([self respondsToSelector:@selector(searchItem)]) {
-                [items addObject:[self searchItem]];
-            }
-        } else if ([item isKindOfClass:[MSCustomMenuItem class]]) {
-            MSCustomMenuItem *customMenuItem = (MSCustomMenuItem *)item;
-            JSMenuItemButton *button = [[JSMenuItemButton alloc] init];
-            button.tintColor = [UIColor colorForKey:@"common_navbarItemTextColor"];
-            button.menuItem = customMenuItem;
-            
-            [button addTarget:self action:@selector(customMeunItemButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-            UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-            [items addObject:buttonItem];
-        }
-#else
         MSCustomMenuItem *customMenuItem = (MSCustomMenuItem *)item;
         JSMenuItemButton *button = [[JSMenuItemButton alloc] init];
-        //button.tintColor = [UIColor colorForKey:@"common_navbarItemTextColor"];
         button.menuItem = customMenuItem;
         
         [button addTarget:self action:@selector(customMeunItemButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
         [items addObject:buttonItem];
-#endif
-        
     }
     
     self.navigationItem.rightBarButtonItems = items;

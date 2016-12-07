@@ -47,6 +47,7 @@ NSString * const JSResponseErrorDataKey    = @"data";
 }
 
 - (void)registerHandler:(NSString *)handlerName handler:(WVJBHandler)handler {
+    NSLog(@"%@",handlerName);
     _messageHandlers[handlerName] = [handler copy];
 }
 
