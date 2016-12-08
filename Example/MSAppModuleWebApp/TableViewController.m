@@ -24,7 +24,9 @@ static NSDictionary *tableItem;
                   @"2":@"copy内容--copy",
                   @"3":@"设置导航右上角按钮--rightItem",
                   @"4":@"显示一个消息 从此远离alert--message",
-                  @"5":@"导航控制器回pop--navpop"};
+                  @"5":@"导航控制器回pop--navpop",
+                  @"6":@"route跳转--route",
+                  @"7":@"打开一个新的webview--newWebView"};
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return tableItem.allKeys.count;
@@ -55,9 +57,6 @@ static NSDictionary *tableItem;
 - (void)open:(NSString *)pageName {
     
     //http://ms.emoney.cn/html/js/SinglePage.js?v=4
-    
-    
-    
    // [BDKNotifyHUD showNotifHUDWithText:@"aadsfasdfasd"];
     
     NSURL *url = [[NSBundle mainBundle] URLForResource:pageName withExtension:@"html"];

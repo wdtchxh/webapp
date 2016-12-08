@@ -33,8 +33,9 @@ JS_EXPORT_MODULE();
 }
 
 - (void)attachToJSBridge:(JSBridge *)bridge {
-
+    //复制内容到剪切板
     [self registerCopyWithBridge:bridge];
+    //
     [self registerCanOpenURLWithBridge:bridge];
     [self registerShowMenuItemsWithBridge:bridge];
     [self registerShowNotifyWithBridge:bridge];
@@ -48,19 +49,11 @@ JS_EXPORT_MODULE();
     [self registerShareConfigWithBridge:bridge];
     //右上角的搜索按钮 启用禁用设置
     [self registerSearchToggleWithBridge:bridge];
-
+    //route 调用
     [self registerOpenPageWithBridge:bridge];
-    [self registerRoutePageWithBridge:bridge];
-    [self registerRouteWithBridge:bridge];
-    
-    [self registerLoginWithBridge:bridge];
-    
-    [self registerSearchWithBridge:bridge];
-    [self registerUpdateUserInfoWithBridge:bridge];
-    
+    //修改 nav的  title
     [self registerUpdateTitleWithBridge:bridge];
-    
-    
+    //打开一个新的 webview
     [self registerOpenURLWithBridge:bridge];
 
 
@@ -83,7 +76,6 @@ JS_EXPORT_MODULE();
         webViewController.menuItems = [MSCustomMenuItem itemsWithData:menuItems];
     }];
 }
-
 - (void)registerCanOpenURLWithBridge:(JSBridge *)bridge {
     [self registerHandler:@"canOpenURL" handler:^(id data, WVJBResponseCallback responseCallback) {
         NSDictionary *parameters = (NSDictionary *)data;
@@ -96,7 +88,6 @@ JS_EXPORT_MODULE();
                            JSResponseErrorDataKey:@(canopen)});
     }];
 }
-
 - (void)registerCopyWithBridge:(JSBridge *)bridge {
     [self registerHandler:@"copy" handler:^(id data, WVJBResponseCallback responseCallback) {
         NSDictionary *parameters = (NSDictionary *)data;
@@ -107,7 +98,6 @@ JS_EXPORT_MODULE();
         responseCallback(@{JSResponseErrorCodeKey:@(JSResponseErrorCodeSuccess)});
     }];
 }
-
 - (void)registerShareWithBridge:(JSBridge *)bridge {
     __weak EMWebViewController *webViewController = (EMWebViewController *)bridge.viewController;
     
@@ -123,7 +113,6 @@ JS_EXPORT_MODULE();
         responseCallback(@{JSResponseErrorCodeKey:@(JSResponseErrorCodeSuccess)});
     }];
 }
-
 - (void)registerShareConfigWithBridge:(JSBridge *)bridge {
     __weak EMWebViewController *webViewController = (EMWebViewController *)bridge.viewController;
     [self registerHandler:@"shareConfig" handler:^(id data, WVJBResponseCallback responseCallback) {
@@ -144,7 +133,6 @@ JS_EXPORT_MODULE();
         responseCallback(@{JSResponseErrorCodeKey:@(JSResponseErrorCodeSuccess)});
     }];
 }
-
 - (void)registerShowNotifyWithBridge:(JSBridge *)bridge {
     [self registerHandler:@"showNotify" handler:^(id data, WVJBResponseCallback responseCallback) {
         NSString *message = data[@"message"];
@@ -152,8 +140,6 @@ JS_EXPORT_MODULE();
         responseCallback(@{JSResponseErrorCodeKey:@(JSResponseErrorCodeSuccess)});
     }];
 }
-
-
 - (void)registerPopWithBridge:(JSBridge *)bridge {
     __weak EMWebViewController *webViewController = (EMWebViewController *)bridge.viewController;
 
@@ -172,7 +158,6 @@ JS_EXPORT_MODULE();
     [self registerHandler:@"close" handler:handler];
     
 }
-
 - (void)registerGoBackWithBridge:(JSBridge *)bridge {
     __weak EMWebViewController *webViewController = (EMWebViewController *)bridge.viewController;
     void (^handler)(id, WVJBResponseCallback) = ^(id data, WVJBResponseCallback responseCallback){
@@ -187,7 +172,6 @@ JS_EXPORT_MODULE();
     [self registerHandler:@"goback" handler:handler];
     
 }
-
 - (void)registerSearchToggleWithBridge:(JSBridge *)bridge {
     __weak EMWebViewController *webViewController = (EMWebViewController *)bridge.viewController;
     void (^handler)(id, WVJBResponseCallback) = ^(id data, WVJBResponseCallback responseCallback){
@@ -202,91 +186,17 @@ JS_EXPORT_MODULE();
     
     [self registerHandler:@"searchConfig" handler:handler];
 }
-
-#pragma mark - JLRoutes跳转
 - (void)registerOpenPageWithBridge:(JSBridge *)bridge {
     void (^handler)(id, WVJBResponseCallback) = ^(id data, WVJBResponseCallback responseCallback){
         NSDictionary *parameters = (NSDictionary *)data;
-        [JLRoutes routeURL:[NSURL URLWithString:@"page"] withParameters:parameters];
+        //其实web也可以 从 页面传递过来
+        [JLRoutes routeURL:[NSURL URLWithString:@"web"] withParameters:parameters];
         responseCallback(@{JSResponseErrorCodeKey:@(JSResponseErrorCodeSuccess)});
     };
     
     [self registerHandler:@"page" handler:handler];
     
 }
-
-- (void)registerRoutePageWithBridge:(JSBridge *)bridge {
-    void (^handler)(id, WVJBResponseCallback) = ^(id data, WVJBResponseCallback responseCallback){
-        NSDictionary *parameters = (NSDictionary *)data;
-        [JLRoutes routeURL:[NSURL URLWithString:@"page"] withParameters:parameters];
-        responseCallback(@{JSResponseErrorCodeKey:@(JSResponseErrorCodeSuccess)});
-    };
-    
-    [self registerHandler:@"routePage" handler:handler];
-    
-}
-
-- (void)registerRouteWithBridge:(JSBridge *)bridge {
-    void (^handler)(id, WVJBResponseCallback) = ^(id data, WVJBResponseCallback responseCallback){
-        NSURL *url =[NSURL URLWithString:@"web?url=http://ms.emoney.cn/html/dujia/77/154344.html"];
-        NSDictionary *parameters = (NSDictionary *)data;
-        [JLRoutes routeURL:url];
-
-        //        NSDictionary *parameters = (NSDictionary *)data;
-//        NSString *path = parameters[@"path"];
-//        if (path) {
-//            [JLRoutes routeURL:[NSURL URLWithString:path] withParameters:parameters];
-//            responseCallback(@{JSResponseErrorCodeKey:@(JSResponseErrorCodeSuccess)});
-//        } else {
-//            responseCallback(@{JSResponseErrorCodeKey:@(JSResponseErrorCodeFailed)});
-//        }
-    };
-    
-    [self registerHandler:@"route" handler:handler];
-    
-}
-
-- (void)registerCheckTaskStatusWithBridge:(JSBridge *)bridge {
-    [self registerHandler:@"checkTaskStatus" handler:^(id data, WVJBResponseCallback responseCallback) {
-        NSDictionary *parameters = (NSDictionary *)data;
-        [JLRoutes routeURL:[NSURL URLWithString:@"checkTaskStatus"] withParameters:parameters];
-        responseCallback(@{JSResponseErrorCodeKey:@(JSResponseErrorCodeSuccess)});
-    }];
-}
-
-- (void)registerLoginWithBridge:(JSBridge *)bridge {
-    void (^handler)(id, WVJBResponseCallback) = ^(id data, WVJBResponseCallback responseCallback){
-        NSDictionary *parameters = (NSDictionary *)data;
-        [JLRoutes routeURL:[NSURL URLWithString:@"login"] withParameters:parameters];
-        responseCallback(@{JSResponseErrorCodeKey:@(JSResponseErrorCodeSuccess)});
-    };
-    
-    [self registerHandler:@"login" handler:handler];
-}
-
-- (void)registerUpdateUserInfoWithBridge:(JSBridge *)bridge {
-//    __typeof(self)weakSelf = self;
-    void (^handler)(id, WVJBResponseCallback) = ^(id data, WVJBResponseCallback responseCallback){
-        NSDictionary *parameters = (NSDictionary *)data;
-        [JLRoutes routeURL:[NSURL URLWithString:@"updateUserInfo"] withParameters:parameters];
-        responseCallback(@{JSResponseErrorCodeKey:@(JSResponseErrorCodeSuccess)});
-    };
-    
-    [self registerHandler:@"updateUserInfo" handler:handler];
-}
-
-// 移到search
-- (void)registerSearchWithBridge:(JSBridge *)bridge {
-    void (^handler)(id, WVJBResponseCallback) = ^(id data, WVJBResponseCallback responseCallback){
-        NSDictionary *parameters = (NSDictionary *)data;
-        [JLRoutes routeURL:[NSURL URLWithString:@"search"] withParameters:parameters];
-        responseCallback(@{JSResponseErrorCodeKey:@(JSResponseErrorCodeSuccess)});
-    };
-    
-    [self registerHandler:@"search" handler:handler];
-}
-
-// Base
 - (void)registerUpdateTitleWithBridge:(JSBridge *)bridge {
     __weak UIViewController *viewController = bridge.viewController;
     void (^handler)(id, WVJBResponseCallback) = ^(id data, WVJBResponseCallback responseCallback){
@@ -298,18 +208,14 @@ JS_EXPORT_MODULE();
     
     [self registerHandler:@"updateTitle" handler:handler];
 }
-
 - (void)registerOpenURLWithBridge:(JSBridge *)bridge {
     __weak UIViewController *viewController = bridge.viewController;
     void (^handler)(id, WVJBResponseCallback) = ^(id data, WVJBResponseCallback responseCallback){
         NSDictionary *parameters = (NSDictionary *)data;
-        
         EMWebViewController *webViewController = [[EMWebViewController alloc] initWithRouterParams:parameters];
-        
         [viewController.navigationController pushViewController:webViewController animated:YES];
         responseCallback(@{JSResponseErrorCodeKey:@(JSResponseErrorCodeSuccess)});
     };
-    
     [self registerHandler:@"web" handler:handler];
 }
 

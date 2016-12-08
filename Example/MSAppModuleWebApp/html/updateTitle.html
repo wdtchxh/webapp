@@ -6,7 +6,7 @@
     <script>
         document.addEventListener("DOMContentLoaded",function() {
                                   goods.ready(function(bridge) {
-                                              goods.copy({"text":"我是来自拷贝的内容"},function(param){
+                                              goods.updateTitle({"text":"我是来自拷贝的内容"},function(param){
                                                                 for (var i in param) {
                                                                     if(param[i]==0){
                                                                         alert("拷贝内容成功");

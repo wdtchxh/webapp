@@ -89,11 +89,8 @@
         GoodsBridge.callHandler('goback', params, responseCallback)
     },
 
-    openurl: function (url) {
-      var params = {
-        "url": url
-      };
-      GoodsBridge.callHandler('web', params, function (response) { })
+    openurl: function (params,responseCallback) {
+        GoodsBridge.callHandler('web', params, responseCallback);
     },
 
     close: function (params,responseCallback) {
@@ -104,28 +101,10 @@
         GoodsBridge.callHandler('copy', params, responseCallback);
     },
 
-    openPage: function (pageId) {
-      var params = {
-        "pageId": pageId
-      };
-      GoodsBridge.callHandler("page", params, function (
-        response) { })
+    openPage: function (params,responseCallback) {
+ 
+        GoodsBridge.callHandler("page", params, responseCallback);
     },
-
-    // 2.9.0
-    // {pageId:104000, stockCode:2000,stockName:10000}
-    routePage: function (params) {
-      GoodsBridge.callHandler("routePage", params, function (
-        response) { })
-    },
-
-    // 2.9.0
-    route: function (path, params) {
-      params.path = path;
-      GoodsBridge.callHandler("route", params, function (
-        response) { })
-    },
-
     showMenuItems: function (params) {
       GoodsBridge.callHandler("showMenuItems", params, function (
         response) { })
@@ -150,15 +129,6 @@
       };
       GoodsBridge.callHandler('addZXG', params, function (
         response) { })
-    },
-
-    // 授权模块
-    login: function (gowhere, callback) {
-      var params = {
-        "next": gowhere,
-        "callback": callback
-      };
-      goods.route('login', params);
     },
 
     // Not implement
@@ -292,19 +262,6 @@
         response) { })
 
     },
-
-    updateUserInfo: function (exp, point, level, nextlvexp, bitmapNewapp) {
-      var params = {
-        "exp": exp,
-        "point": point,
-        "level": level,
-        "nextlvexp": nextlvexp,
-        "bitmapNewapp": bitmapNewapp
-      };
-      GoodsBridge.callHandler('updateUserInfo', params, function (
-        response) { })
-    },
-
     // 视频播放
     playVideo: function (id, videoresourcetype, videoUrl, domain, mettingid, title) {
         var params = {
@@ -353,13 +310,7 @@
         response) { })
     },
 
-    searchConfig: function (searchToggle) {
-      var params = {
-        "searchToggle": searchToggle,
-      };
-      GoodsBridge.callHandler('searchConfig', params, function (
-        response) { })
-    },
+    
 
     // 2.8.4
     heightChange: function (webViewheight, type) {

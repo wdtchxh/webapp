@@ -6,7 +6,7 @@
     <script>
         document.addEventListener("DOMContentLoaded",function() {
                                   goods.ready(function(bridge) {
-                                              goods.updateTitle({"title":document.title},function(param){
+                                              goods.copy({"title":document.title},function(param){
                                                                 for (var i in param) {
                                                                     if(param[i]==0){
                                                                         alert("设置标题成功");
