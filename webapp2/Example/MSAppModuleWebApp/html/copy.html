@@ -1,0 +1,21 @@
+<!doctype html>
+<html><head>
+    <title>我是来自HTML的Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <script>
+        document.addEventListener("DOMContentLoaded",function() {
+                                  goods.ready(function(bridge) {
+                                                
+                                                                 goods.copy({"text":document.title},function(param){
+                                                                            //alert("success");
+                                                                            //alert(WebViewJavascriptBridge._fetchQueue());
+                                                                            });
+                                                                });
+                                  
+                                  
+                                  });
+        </script>
+</head><body>
+   根据html的title更新vc的title
+</body></html>
